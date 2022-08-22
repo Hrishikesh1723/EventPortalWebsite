@@ -7,14 +7,17 @@ dotenv.config({path:'./config.env'});
 
 require('./db/connection');
 
-const User = require('./moduls/userSchema');
+app.use(express.json());
 
-const PORT = process.env.PORT
+// const User = require('./moduls/userSchema');
+app.use(require('./router/auth'));
+
+const PORT = process.env.PORT;
 
 const middleware = (req,res,next) => {
     console.log(`hello middleware`);
     next();
-}
+};
 
 app.get(`/`,(req,res) =>{
     res.send(`Hello World!`)
