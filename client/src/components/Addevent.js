@@ -1,7 +1,13 @@
 import React,{useState} from 'react';
 import Anavbar from './Anavbar';
 import login from "../images/login.jpg";
+import AddEvent from "../images/Addevent.png";
 import { useNavigate } from 'react-router-dom';
+import { MdSubtitles } from "react-icons/md";
+import { BiMessageDetail } from "react-icons/bi";
+import { BsCalendarDate } from "react-icons/bs";
+import { BiTimeFive } from "react-icons/bi";
+import { HiHome } from "react-icons/hi";
 
 const Addevent = () => {
   let navigate = useNavigate();
@@ -68,9 +74,7 @@ const Addevent = () => {
             <div className="login-page">Add Event</div>
             <form method="POST">
               <div className="firstInput">
-                <label>
-                    Event Title
-                </label>
+                <MdSubtitles size={25}/>
                 <input
                   type="text"
                   value={event.title}
@@ -82,9 +86,7 @@ const Addevent = () => {
                 />
               </div>
               <div className="secondInput">
-                <label>
-                    Event Details
-                </label>
+                <BiMessageDetail size={25}/>
                 <input
                   type="text"
                   value={event.detail}
@@ -96,11 +98,9 @@ const Addevent = () => {
                 />
               </div>
               <div className="secondInput">
-                <label>
-                    Evenet Date
-                </label>
+                <BsCalendarDate size={25}/>
                 <input
-                  type="text"
+                  type="date"
                   value={event.date}
                   placeholder="Date"
                   className="name"
@@ -110,9 +110,7 @@ const Addevent = () => {
                 />
               </div>
               <div className="secondInput">
-                <label>
-                    Event Time
-                </label>
+                <BiTimeFive size={25}/>
                 <input
                   type="text"
                   value={event.time}
@@ -124,9 +122,7 @@ const Addevent = () => {
                 />
               </div>
               <div className="secondInput">
-                <label>
-                    Event Venue
-                </label>
+                <HiHome size={25}/>
                 <input
                   type="text"
                   value={event.venue}
@@ -149,6 +145,9 @@ const Addevent = () => {
             </form>
           </div>
         </div>
+          <div>
+            <img src={AddEvent} alt="Login Image" className="Loginimg"/>
+          </div>
       </div>
     </> 
   )

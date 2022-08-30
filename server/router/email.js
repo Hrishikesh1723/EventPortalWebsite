@@ -29,9 +29,7 @@ if (error) {
 }
 })
 
-router.get('/email', (req, res, next) => {
-    res.status(200).json({ msg: 'Working' })
-})
+
 
 router.post('/sendemail', (req, res, next) => {
     const mail = {
@@ -39,12 +37,13 @@ router.post('/sendemail', (req, res, next) => {
     to: req.body.toemail,
     subject: req.body.subject,
     text: `
+      Dear ${req.body.uname},
+
+      ${req.body.message}
+      
       from:
       ${req.body.name}
-
-
-      message:
-      ${req.body.message}`,
+      regards`,
     }
     transporter.sendMail(mail, (err, data) => {
         if (err) {
@@ -59,9 +58,6 @@ router.post('/sendemail', (req, res, next) => {
     })
 })
 
-router.use('/api', function (req, res) {
-    res.set('Content-Type', 'application/json')
-    res.send('{"message":"Hello from the custom server!"}')
-})
+
 
 module.exports = router

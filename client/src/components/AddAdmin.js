@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import Anavbar from './Anavbar'
 import login from "../images/login.jpg";
+import Addadmin from "../images/Addadmin.png";
 import { BiLock } from "react-icons/bi";
 import { MdOutlineMail } from "react-icons/md";
 import { FiUser } from "react-icons/fi";
@@ -113,6 +114,9 @@ const AddAdmin = () => {
             </form>
           </div>
         </div>
+          <div>
+            <img src={Addadmin} alt="Login Image" className="Loginimg"/>
+          </div>
       </div>
     </> 
   )

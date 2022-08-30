@@ -45,6 +45,20 @@ const Singup = () => {
       }),
     });
 
+    const resp = await fetch("/sendemail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        toemail:email,
+        uname:name,
+        subject:"Registration successful!",
+        message:"You are successfully registered to our Eventive Event portal, Thanks for choosing us hope you Enjoy our service!",
+        name:"Eventive"
+      }),
+    });
+
     const data = await res.json();
 
     if (res.status === 422 || !data) {

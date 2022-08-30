@@ -65,7 +65,7 @@ router3.post('/admin', async (req,res) => {
 
         }else{
 
-            res.json({message: "Login Successfull!"});
+            res.status(200).json({message: "Login Successfull!"});
         }
         }else{
 
