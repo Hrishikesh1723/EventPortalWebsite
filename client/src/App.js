@@ -21,7 +21,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Home/> } ></Route>
-      <Route path="/profile" element={<Profile/> } ></Route>
+      <Route path="/about" element={<Profile/> } ></Route>
       <Route path="/login" element={<Login/> } ></Route>
       <Route path="/signup" element={<Singup/> } ></Route>
       <Route path="/admin" element={<Admin/> } ></Route>
@@ -31,7 +31,7 @@ const App = () => {
       <Route path="/uevents" element={<Uevent/> } ></Route>
       <Route path="/addevent" element={<Addevent/> } ></Route>
       <Route path="/addadmin" element={<AddAdmin/> } ></Route>
-      <Route path="/myevents" element={<Myevent/> } ></Route> 
+      <Route path="/myevents" element={<Myevent/> } ></Route>
     </Routes>
   );
 };

@@ -31,7 +31,7 @@ const Login = () => {
       window.alert("Invalid credential");
     }else{
       window.alert("Login Successful!");
-      navigate("/userhome");
+      navigate("/about");
     }
   }
 
@@ -49,7 +49,7 @@ const Login = () => {
             </div>
             <div className="login-page">Login Page</div>
             <form method="POST">
-            <div className="firstInput">
+            <div className="firstInput"> 
               <MdOutlineMail size={25} />
               <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" className="name" />
             </div>

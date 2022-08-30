@@ -1,11 +1,14 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
+const cookieParser = require('cookie-parser')
 const bcrypt = require("bcryptjs");
 const authenticate = require("../middleware/authenticate");
 
 require("../db/connection");
 const User = require("../moduls/userSchema");
+
+router.use(cookieParser())
 
 // main page
 router.get(`/`, (req, res) => {
@@ -28,7 +31,7 @@ router.post("/register", async (req, res) => {
     } else if (password != cpassword) {
       return res.status(400).json({ error: " Password did not match" });
     } else {
-      const user = new User.create({
+      const user = new User({
         name,
         email: email.toLowerCase(),
         password,
@@ -62,7 +65,7 @@ router.post("/login", async (req, res) => {
 
       token = await userLogin.generateAuthToken();
 
-      res.cookie("jwtToken", token, {
+      res.cookie("jwtoken", token, {
           expires: new Date(Date.now() + 25892000000),
           httpOnly:true
       });

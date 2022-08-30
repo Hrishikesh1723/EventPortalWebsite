@@ -29,7 +29,7 @@ const Unavbar = () => {
               </NavLink>
             </li>
             <li className="nav-item active">
-              <NavLink className="nav-link" to="/profile">
+              <NavLink className="nav-link" to="/about">
                 Profile <span className="sr-only">(current)</span>
               </NavLink>
             </li>

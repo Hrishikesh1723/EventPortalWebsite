@@ -88,7 +88,7 @@ const Addevent = () => {
               <div className="secondInput">
                 <BiMessageDetail size={25}/>
                 <input
-                  type="text"
+                  type="textarea"
                   value={event.detail}
                   placeholder="Details"
                   className="name"
