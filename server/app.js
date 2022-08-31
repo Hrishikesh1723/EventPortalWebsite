@@ -18,14 +18,8 @@ app.use(require('./router/email'));
 app.use(require('./router/events3'));
 app.use(cookieParser());
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT; 
 
-app.get(`/contact`,(req,res) =>{
-    res.send(`Hello World!3`)
-})
-app.get(`/login`,(req,res) =>{
-    res.send(`Hello World!4`)
-})
 
 app.listen(PORT, ()=>{
     console.log(`server is runging on port no. ${PORT}`)

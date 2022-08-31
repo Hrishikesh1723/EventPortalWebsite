@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import Anavbar from './Anavbar';
 import login from "../images/login.jpg";
 import AddEvent from "../images/Addevent.png";
@@ -11,6 +11,38 @@ import { HiHome } from "react-icons/hi";
 
 const Addevent = () => {
   let navigate = useNavigate();
+  const [userData, setUserData] = useState();
+
+  const callProfilePage = async () => {
+    
+    try {
+      const res = await fetch('/adminhome',{
+        method: "GET",
+        headers:{
+          Accept:"application/json",
+          "Content-Type": "application/json",
+        },
+        credentials:"include"
+        
+      });
+
+      const data = await res.json();
+      console.log(data);
+      setUserData(data);
+
+      if(!res.status === 200){
+        const error = new Error(res.error);
+        throw error;
+      }
+    } catch (err) {
+      console.log(err);
+      navigate('/admin')
+    }
+  }
+
+  useEffect(() =>{
+    callProfilePage();
+  }, [])
 
   const [event, setEvent] = useState({
     title:"",

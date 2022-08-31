@@ -5,54 +5,22 @@ import { NavLink } from "react-router-dom";
 const Unavbar = () => {
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <NavLink className="navbar-brand" to="#">
-          Navbar
-        </NavLink>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item active">
-              <NavLink className="nav-link" to="/userhome">
-                Home <span className="sr-only">(current)</span>
-              </NavLink>
-            </li>
-            <li className="nav-item active">
-              <NavLink className="nav-link" to="/about">
-                Profile <span className="sr-only">(current)</span>
-              </NavLink>
-            </li>
-            <li className="nav-item active">
-              <NavLink className="nav-link" to="/uevents">
-                Events <span className="sr-only">(current)</span>
-              </NavLink>
-            </li>
-            <li className="nav-item active">
-              <NavLink className="nav-link" to="/myevents">
-                My events<span className="sr-only">(current)</span>
-              </NavLink>
-            </li>
-            <li className="nav-item active">
-              <NavLink className="nav-link" to="/logout">
-                Logout<span className="sr-only">(current)</span>
-              </NavLink>
-            </li>
-          </ul>
+    <nav class="navbar">
+      <div class="logo">MUO</div>
+      <ul class="nav-links">
+        <input type="checkbox" id="checkbox_toggle" />
+        <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+        <div class="menu">
+          <li type="none"><NavLink to="/userhome">Home</NavLink></li>
+          <li type="none"><NavLink to="/uevents">Events</NavLink></li>
+          <li type="none"><NavLink to="/myevents">Myevent</NavLink></li>
+          <li type="none"><NavLink to="/about">Profile</NavLink></li>
+          <li type="none"><NavLink to="/logout">logout</NavLink></li>
         </div>
-      </nav>
+      </ul>
+    </nav>
     </>
   )
 }
 
-export default Unavbar
+export default Unavbar 

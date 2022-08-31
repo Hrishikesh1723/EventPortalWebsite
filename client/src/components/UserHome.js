@@ -9,7 +9,7 @@ const UserHome = () => {
   const callProfilePage = async () => {
     
     try {
-      const res = await fetch('/about',{
+      const res = await fetch('/userhome',{
         method: "GET",
         headers:{
           Accept:"application/json",
