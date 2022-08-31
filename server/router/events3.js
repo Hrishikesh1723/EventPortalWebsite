@@ -10,4 +10,4 @@ router.delete('/event/:id', Event.deleteEvent)
 router.get('/event/:id', Event.getEventById)
 router.get('/events', Event.getEvents)
 
-module.exports = router
+module.exports = router 

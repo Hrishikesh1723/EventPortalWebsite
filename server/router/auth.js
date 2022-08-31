@@ -87,9 +87,20 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// About us Page
+// profile Page
 router.get(`/about`, authenticate, (req, res) => {
-  console.log("Hello");
+  res.send(req.rootUser);
+});
+// User Home Page
+router.get(`/userhome`, authenticate, (req, res) => {
+  res.send(req.rootUser);
+});
+// User Event Page
+router.get(`/uevents`, authenticate, (req, res) => {
+  res.send(req.rootUser);
+});
+// User registerd event Page
+router.get(`/myevents`, authenticate, (req, res) => {
   res.send(req.rootUser);
 });
 

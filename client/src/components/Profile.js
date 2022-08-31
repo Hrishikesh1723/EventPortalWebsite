@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Unavb from './Unavbar'
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
+  let navigate = useNavigate();
+  const [userData, setUserData] = useState('');
 
   const callProfilePage = async () => {
     
@@ -19,6 +21,7 @@ const Profile = () => {
 
       const data = await res.json();
       console.log(data);
+      setUserData(data);
 
       if(!res.status === 200){
         const error = new Error(res.error);
@@ -26,6 +29,7 @@ const Profile = () => {
       }
     } catch (err) {
       console.log(err);
+      navigate('/login')
     }
   }
 
@@ -37,6 +41,8 @@ const Profile = () => {
     <Unavb/>
     <div>
         <h1>Profile Page!</h1>
+        <h1>{userData.name }</h1>
+        
         <form method='GET'>
         </form>
     </div>

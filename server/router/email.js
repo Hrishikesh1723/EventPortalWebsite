@@ -13,7 +13,7 @@ auth: {
     pass: process.env.SMTP_TO_PASSWORD,
 },
 tls: {
-  // do not fail on invalid certs
+  // do not fail on invalid certs 
   rejectUnauthorized: false,
 },
 }

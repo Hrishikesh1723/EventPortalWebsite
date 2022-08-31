@@ -113,9 +113,9 @@ getEvents = async (req, res) => {
                 .status(404)
                 .json({ success: false, error: `Event not found` })
         }
-        return res.status(200).json({ success: true, data: events })
+        return res.status(200).json({ success: true,size:events.length, data: events })
     }).catch(err => console.log(err))
-}
+} 
 
 module.exports = {
     createEvent,
