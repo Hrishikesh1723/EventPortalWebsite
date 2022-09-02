@@ -32,6 +32,18 @@ function Aevents() {
       navigate('/admin')
     }
   }
+  const deleteEve = async (id) => {
+    if(window.confirm ("Do you really want to delete the event")){
+      const res = await fetch(`/event/${id}`, { method: 'DELETE' });
+    if(res===400){
+      console.log(res)
+    }else{
+      console.log(res)
+    }
+    }
+    window.location.reload(true)
+    
+}
 
   useEffect(() =>{
     callProfilePage();
@@ -82,7 +94,7 @@ function Aevents() {
            <h3>{props.record.date}</h3>
            <h3>{props.record.time}</h3>
            <h3>{props.record.venue}</h3>
-           <button className="btn btn-sm btn-danger">Delete</button> 
+           <button className="btn btn-sm btn-danger" onClick={() => deleteEve(props.record._id)}>Delete</button> 
         </div>
         <hr/> 
     </div>

@@ -90,6 +90,25 @@ const Uevent = () => {
       })
     });
 
+    const resp = await fetch("/sendemail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        toemail:userData.email,
+        uname:userData.name,
+        subject:"Event Registration successful!",
+        message:`You Have register For Event
+        ${title}
+        Detail: ${detail}
+        Date: ${date}
+        Time: ${time}
+        Venue: ${venue}`,
+        name:"Eventive"
+      }),
+    });
+
     const data = await res.json();
 
     if(!data){

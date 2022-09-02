@@ -115,7 +115,6 @@ router.post(`/registerevent`, authenticate, async (req, res) => {
     const {title,detail,date,time,venue} = req.body;
 
     if(!title || !detail || !date || !time || !venue){
-      console.log("!errorrr")
       return res.json({ error:"Empty Data!"})
     }
 
