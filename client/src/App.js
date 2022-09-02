@@ -17,6 +17,7 @@ import Uevent from "./components/Uevent";
 import Addevent from "./components/Addevent";
 import AddAdmin from "./components/AddAdmin";
 import Myevent from "./components/Myevent";
+import Logout from "./components/Logout";
 const App = () => {
   return (
     <Routes>
@@ -32,6 +33,7 @@ const App = () => {
       <Route path="/addevent" element={<Addevent/> } ></Route>
       <Route path="/addadmin" element={<AddAdmin/> } ></Route>
       <Route path="/myevents" element={<Myevent/> } ></Route>
+      <Route path="/logout" element={<Logout/> } ></Route>
     </Routes>
   );
 };

@@ -79,5 +79,11 @@ router3.get(`/aevents`, adminAuthenticate, (req, res) => {
 router3.get(`/addevent`, adminAuthenticate, (req, res) => {
   res.send(req.rootAdmin);
 });
+// logout
+router3.get(`/logout`, (req, res) => {
+  console.log("Admin logout");
+  res.clearCookie('jwtoken',{path:'/'});
+  res.status(200).send('Admin logout');
+});
 
 module.exports = router3;

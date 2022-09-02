@@ -39,7 +39,7 @@ const Myevent = () => {
   return (
     <>
     <Unavbar/>
-    <div>UserHome</div>
+    <div>MY Events</div>
     </> 
   )
 }

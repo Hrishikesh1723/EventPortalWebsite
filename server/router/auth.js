@@ -100,8 +100,14 @@ router.get(`/uevents`, authenticate, (req, res) => {
   res.send(req.rootUser);
 });
 // User registerd event Page
-router.get(`/myevents`, authenticate, (req, res) => {
+router.get(`/myevent`, authenticate, (req, res) => {
   res.send(req.rootUser);
+});
+// logout
+router.get(`/logout`, (req, res) => {
+  console.log("User logout");
+  res.clearCookie('jwtoken',{path:'/'});
+  res.status(200).send('user logout');
 });
 
 module.exports = router;

@@ -39,7 +39,7 @@ const AdminHome = () => {
   return (
     <>
     <Anavbar/>
-    <div>UserHome</div>
+    <div>AdminHome</div>
     </> 
   )
 }
