@@ -109,5 +109,29 @@ router.get(`/logout`, (req, res) => {
   res.clearCookie('jwtoken',{path:'/'});
   res.status(200).send('user logout');
 });
+// User registerd event Page
+router.post(`/registerevent`, authenticate, async (req, res) => {
+  try {
+    const {title,detail,date,time,venue} = req.body;
+
+    if(!title || !detail || !date || !time || !venue){
+      console.log("!errorrr")
+      return res.json({ error:"Empty Data!"})
+    }
+
+    const userEvent = await User.findOne({_id: req.userID });
+
+    if (userEvent){
+      const addEve = await userEvent.addEvents(title,detail,date,time,venue);
+      
+      await userEvent.save();
+
+      res.status(200).json({message:"Event registered"})
+    }
+
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 module.exports = router;

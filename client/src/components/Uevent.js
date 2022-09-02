@@ -41,9 +41,9 @@ const Uevent = () => {
   //   setCalDate(calDate);
   // }
 
-  // useEffect(() => {
-  //   callProfilePage();
-  // }, []);
+  useEffect(() => {
+    callProfilePage();
+  }, []);
 
   let myStyle = {
     minHeight: "70vh",
@@ -78,6 +78,27 @@ const Uevent = () => {
     callEventsData();
   }, []);
 
+  // sending data of registerd event
+  const registerdEvent = async (title,detail,date,time,venue) => {    
+    const res = await fetch('/registerevent',{
+      method:"POST",
+      headers:{
+        "Content-Type": "application/json",
+      },
+      body:JSON.stringify({
+        title,detail,date,time,venue
+      })
+    });
+
+    const data = await res.json();
+
+    if(!data){
+      console.log("event not register");
+    }else{
+      alert("Event registered")
+    }
+  }
+
   const Record = (props) => (
     <div className="container" style={myStyle}>
       <h3 className="my-3">Event list</h3>
@@ -87,7 +108,7 @@ const Uevent = () => {
         <h3>{props.record.date}</h3>
         <h3>{props.record.time}</h3>
         <h3>{props.record.venue}</h3>
-        <button className="btn btn-sm btn-danger">Register</button>
+        <button className="btn btn-sm btn-danger" onClick={() => registerdEvent(props.record.title,props.record.detail,props.record.date,props.record.time,props.record.venue)}>Register</button>
       </div>
       <hr />
     </div>

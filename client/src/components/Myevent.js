@@ -33,13 +33,36 @@ const Myevent = () => {
     }
   }
 
+  let myStyle = {
+    minHeight: "70vh",
+    margin: "40px auto",
+  };
+
+  const Record = (props) => (
+    <div className="container" style={myStyle}>
+      <h3 className="my-3">Event list</h3>
+      <div>
+        <h1>{props.record.title}</h1>
+        <h3>{props.record.detail}</h3>
+        <h3>{props.record.date}</h3>
+        <h3>{props.record.time}</h3>
+        <h3>{props.record.venue}</h3>
+        <button className="btn btn-sm btn-danger" >Register</button>
+      </div>
+      <hr />
+    </div>
+  );
   useEffect(() =>{
     callProfilePage();
   }, [])
   return (
     <>
     <Unavbar/>
-    <div>MY Events</div>
+      <div>
+        {userData.events?.map((eve) => (
+          <Record record={eve} key={eve._id} />
+        ))}
+      </div>
     </> 
   )
 }
