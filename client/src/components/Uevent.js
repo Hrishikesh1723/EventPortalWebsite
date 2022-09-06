@@ -86,7 +86,7 @@ const Uevent = () => {
         "Content-Type": "application/json",
       },
       body:JSON.stringify({
-        title,detail,date,time,venue
+        title,detail,date,time,venue,uname:userData.name,uemail:userData.email
       })
     });
 

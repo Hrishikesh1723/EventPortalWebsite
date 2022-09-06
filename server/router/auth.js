@@ -7,6 +7,7 @@ const authenticate = require("../middleware/authenticate");
 
 require("../db/connection");
 const User = require("../moduls/userSchema");
+const Event = require("../moduls/eventSchema");
 
 router.use(cookieParser())
 
@@ -112,10 +113,22 @@ router.get(`/logout`, (req, res) => {
 // User registerd event Page
 router.post(`/registerevent`, authenticate, async (req, res) => {
   try {
-    const {title,detail,date,time,venue} = req.body;
+    const {title,detail,date,time,venue,uname,uemail} = req.body;
 
-    if(!title || !detail || !date || !time || !venue){
+    if(!title || !detail || !date || !time || !venue || !uname || !uemail){
       return res.json({ error:"Empty Data!"})
+    }
+
+    const eventInfo = await Event.findOne({title:title});
+
+    if (eventInfo){
+      const addUD = await eventInfo.addUserDetail(uname,uemail);
+      
+      await eventInfo.save();
+
+      res.status(200).json({message:"User details added!"})
+    }else{
+      res.status(400).json({message:"User details not added!"})
     }
 
     const userEvent = await User.findOne({_id: req.userID });
@@ -126,10 +139,12 @@ router.post(`/registerevent`, authenticate, async (req, res) => {
       await userEvent.save();
 
       res.status(200).json({message:"Event registered"})
+    }else{
+      res.status(400).json({message:"Event not registered"})
     }
 
   } catch (error) {
-    console.log(error);
+    console.log(error); 
   }
 });
 

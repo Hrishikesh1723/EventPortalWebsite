@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Anavbar from './Anavbar';
 
 function Aevents() {
@@ -85,6 +85,7 @@ function Aevents() {
     callEventsData();
   },[])
 
+  const num = 10;
   const Record = (props) => (
     <div className='container' style={myStyle}>
     <h3 className="my-3">Event list</h3>
@@ -94,7 +95,8 @@ function Aevents() {
            <h3>{props.record.date}</h3>
            <h3>{props.record.time}</h3>
            <h3>{props.record.venue}</h3>
-           <button className="btn btn-sm btn-danger" onClick={() => deleteEve(props.record._id)}>Delete</button> 
+           <button className="btn btn-sm btn-danger" onClick={() => deleteEve(props.record._id)}>Delete</button>
+           <Link to={`/edit/${props.record._id}`}>Edit</Link>
         </div>
         <hr/> 
     </div>

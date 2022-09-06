@@ -42,7 +42,7 @@ const Login = () => {
       <div className="containerBox">
         <div className="container-flaot">
           <div>
-            <div className="img">
+            <div className="img5">
               <div className="img-container">
                 <img src={login} atl="login img" className="login" />
               </div>
@@ -72,7 +72,7 @@ const Login = () => {
             </div>
           </div>
         </div>
-          <div>
+          <div className="container-flaot2">
             <img src={loginImage} alt="Login Image" className="Loginimg"/>
           </div>
       </div>

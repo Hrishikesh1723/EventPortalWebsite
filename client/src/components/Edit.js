@@ -2,16 +2,30 @@ import React,{useState,useEffect} from 'react';
 import Anavbar from './Anavbar';
 import login from "../images/login.jpg";
 import AddEvent from "../images/Addevent.png";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useParams } from 'react-router-dom';
 import { MdSubtitles } from "react-icons/md";
 import { BiMessageDetail } from "react-icons/bi";
 import { BsCalendarDate } from "react-icons/bs";
 import { BiTimeFive } from "react-icons/bi";
 import { HiHome } from "react-icons/hi";
 
-const Addevent = () => {
-  let navigate = useNavigate();
-  const [userData, setUserData] = useState();
+const Edit = () => {
+  let navigate = useNavigate('');
+  const [userData, setUserData] = useState('');
+  const params = useParams('');
+
+  useEffect(()=>{
+    console.log(params);
+    getEventDetail();
+  },[])
+
+  const getEventDetail = async () => {
+    console.log(params)
+    let resp = await fetch(`/event/${params.id}`)
+    resp = await resp.json();
+    console.log(resp);
+    setEvent({...event,title:resp.title,detail:resp.detail,date:resp.date,time:resp.time,venue:resp.venue})
+  } 
 
   const callProfilePage = async () => {
     
@@ -61,35 +75,32 @@ const Addevent = () => {
     setEvent({ ...event, [name]: value });
   };
 
-  const postData = async (e) => {
+  const updateData = async (e) => {
     e.preventDefault();
-
+    
     const { title,detail,date,time,venue } = event;
-
-    const res = await fetch("/addevent", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title,
-        detail,
-        date,
-        time,
-        venue,
-      }),
-    });
-
-    const data = await res.json();
-
-    if (res.status === 422 || !data) {
-      window.alert("Failed!");
-      console.log("Failed!");
-    } else {
-      window.alert("Event added");
-      console.log("Event added");
-      navigate("/adminhome");
+    
+    try {
+        let resp = await fetch(`/event/${params.id}`,{
+            method:"PUT",
+            body: JSON.stringify({
+                title,
+                detail,
+                date,
+                time,
+                venue   
+            }),
+            headers:{
+                "Content-Type": "application/json",
+            }
+        });
+        resp = await resp.json();
+        window.alert("Event Updated successfully!");
+        navigate("/aevents");
+    } catch (error) {
+        console.log(error)
     }
+
   };
 
   return (
@@ -103,8 +114,8 @@ const Addevent = () => {
                 <img src={login} atl="login img" className="login" />
               </div>
             </div>
-            <div className="login-page">Add Event</div>
-            <form method="POST">
+            <div className="login-page">update Event</div>
+            <form method='PUT'>
               <div className="firstInput">
                 <MdSubtitles size={25}/>
                 <input
@@ -114,7 +125,6 @@ const Addevent = () => {
                   className="name"
                   onChange={handleInput}
                   name="title"
-                  autocomplete="off"
                 />
               </div>
               <div className="secondInput">
@@ -126,19 +136,17 @@ const Addevent = () => {
                   className="name"
                   onChange={handleInput}
                   name="detail"
-                  autocomplete="off"
                 />
               </div>
               <div className="secondInput">
                 <BsCalendarDate size={25}/>
                 <input
-                  type="date"
+                  type="text"
                   value={event.date}
                   placeholder="Date"
                   className="name"
                   onChange={handleInput}
                   name="date"
-                  autocomplete="off"
                 />
               </div>
               <div className="secondInput">
@@ -150,7 +158,6 @@ const Addevent = () => {
                   className="name"
                   onChange={handleInput}
                   name="time"
-                  autocomplete="off"
                 />
               </div>
               <div className="secondInput">
@@ -162,16 +169,15 @@ const Addevent = () => {
                   className="name"
                   onChange={handleInput}
                   name="venue"
-                  autocomplete="off"
                 />
               </div>
               <div className="padding1">
                 <input
                   type="submit"
-                  name="Addevent"
+                  name="Edit"
                   className="login-button"
-                  onClick={postData}
-                  value="Add Event"
+                  onClick={updateData}
+                  value="Update"
                 />
               </div>
             </form>
@@ -185,4 +191,4 @@ const Addevent = () => {
   )
 }
 
-export default Addevent
+export default Edit

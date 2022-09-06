@@ -41,7 +41,7 @@ const Admin = () => {
       <div className="containerBox">
         <div className="container-flaot">
           <div>
-            <div className="img">
+            <div className="img5">
               <div className="img-container">
                 <img src={login} atl="login img" className="login" />
               </div>
@@ -68,7 +68,7 @@ const Admin = () => {
             </form>
           </div>
         </div>
-          <div>
+          <div className="container-flaot3">
             <img src={Adminimg} alt="Login Image" className="Loginimg"/>
           </div>
       </div>

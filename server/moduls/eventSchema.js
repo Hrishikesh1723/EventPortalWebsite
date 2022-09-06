@@ -20,10 +20,33 @@ const eventSchema = new mongoose.Schema({
     venue:{
         type: String,
         require: true
-    }
+    },
+    registeredUsers:[
+        {
+            name:{
+                type: String,
+                require: true
+            },
+            email:{
+                type: String,
+                require: true
+            },
+        }
+    ]
 
 });
 
-const Event = mongoose.model('EVENT',eventSchema);
+// adding user details who have registered for the event
+eventSchema.methods.addUserDetail = async function (name,email){
+    try {
+        this.registeredUsers = this.registeredUsers.concat({name,email});
+        await this.save();
+        return this.registeredUsers;
+    } catch (error) {
+       console.log(error) 
+    }
+}
+
+const Event = mongoose.model('EVENT',eventSchema); 
 
 module.exports = Event;

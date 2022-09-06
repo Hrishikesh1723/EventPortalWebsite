@@ -47,7 +47,6 @@ const Myevent = () => {
         <h3>{props.record.date}</h3>
         <h3>{props.record.time}</h3>
         <h3>{props.record.venue}</h3>
-        <button className="btn btn-sm btn-danger" >Register</button>
       </div>
       <hr />
     </div>

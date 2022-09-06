@@ -146,7 +146,7 @@ const AddAdmin = () => {
             </form>
           </div>
         </div>
-          <div>
+          <div className='container-flaot3'>
             <img src={Addadmin} alt="Login Image" className="Loginimg"/>
           </div>
       </div>

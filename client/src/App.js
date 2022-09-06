@@ -18,6 +18,7 @@ import Addevent from "./components/Addevent";
 import AddAdmin from "./components/AddAdmin";
 import Myevent from "./components/Myevent";
 import Logout from "./components/Logout";
+import Edit from "./components/Edit";
 const App = () => {
   return (
     <Routes>
@@ -34,6 +35,7 @@ const App = () => {
       <Route path="/addadmin" element={<AddAdmin/> } ></Route>
       <Route path="/myevents" element={<Myevent/> } ></Route>
       <Route path="/logout" element={<Logout/> } ></Route>
+      <Route path="/edit/:id" element={<Edit/> } ></Route>
     </Routes>
   );
 };

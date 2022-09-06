@@ -51,9 +51,11 @@ updateEvent = async (req, res) => {
                 message: 'Event not found!',
             })
         }
-        event.name = body.name
+        event.title = body.title
+        event.detail = body.detail
+        event.date = body.date
         event.time = body.time
-        event.rating = body.rating
+        event.venue = body.venue
         event
             .save()
             .then(() => {
@@ -99,7 +101,7 @@ getEventById = async (req, res) => {
                 .status(404)
                 .json({ success: false, error: `Event not found` })
         }
-        return res.status(200).json({ success: true, data: event })
+        return res.status(200).json(event)
     }).catch(err => console.log(err))
 }
 

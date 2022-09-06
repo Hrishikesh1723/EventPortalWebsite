@@ -79,6 +79,12 @@ router3.get(`/aevents`, adminAuthenticate, (req, res) => {
 router3.get(`/addevent`, adminAuthenticate, (req, res) => {
   res.send(req.rootAdmin);
 });
+
+// Registered user list
+router3.get(`/myuser`, adminAuthenticate, (req, res) => {
+  res.send(req.rootAdmin);
+});
+
 // logout
 router3.get(`/logout`, (req, res) => {
   console.log("Admin logout");
