@@ -19,6 +19,7 @@ import AddAdmin from "./components/AddAdmin";
 import Myevent from "./components/Myevent";
 import Logout from "./components/Logout";
 import Edit from "./components/Edit";
+import Registereduser from "./components/Registereduser";
 const App = () => {
   return (
     <Routes>
@@ -36,6 +37,7 @@ const App = () => {
       <Route path="/myevents" element={<Myevent/> } ></Route>
       <Route path="/logout" element={<Logout/> } ></Route>
       <Route path="/edit/:id" element={<Edit/> } ></Route>
+      <Route path="/registrations/:id" element={<Registereduser/> } ></Route>
     </Routes>
   );
 };

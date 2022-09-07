@@ -3,6 +3,8 @@ const router = require('express').Router()
 const path = require('path')
 const nodemailer = require('nodemailer')
 
+const Event = require('../moduls/eventSchema');
+
 
 const transport = {
 service:'gmail',
@@ -27,6 +29,40 @@ if (error) {
     //this means success
     console.log('Ready to send mail!')
 }
+})
+
+router.post('/sendEmail/:eventId', (req, res) => {
+    const eventId = req.params.eventId;
+    Event.findById(eventId, (err, reqEvent) => {
+        reqEvent.registeredUsers?.forEach(user => {
+            const mail = {
+            from: process.env.SMTP_FROM_EMAIL,
+            to: user.email,
+            subject: req.body.subject,
+            text: `
+              Dear ${user.name},
+        
+              ${req.body.message}
+              
+              from:
+              Eventive!
+              regards`,
+            }
+            transporter.sendMail(mail, (err, data) => {
+                if (err) {
+                    res.json({
+                        status: 'fail',
+                    })
+                } else {
+                    res.json({
+                        status: 'success',
+                    })
+                }
+            })
+            
+        });
+    })
+
 })
 
 

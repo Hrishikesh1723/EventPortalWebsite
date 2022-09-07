@@ -84,7 +84,7 @@ function Aevents() {
   useEffect(() => {
     callEventsData();
   },[])
-
+  
   const num = 10;
   const Record = (props) => (
     <div className='container' style={myStyle}>
@@ -97,6 +97,7 @@ function Aevents() {
            <h3>{props.record.venue}</h3>
            <button className="btn btn-sm btn-danger" onClick={() => deleteEve(props.record._id)}>Delete</button>
            <Link to={`/edit/${props.record._id}`}>Edit</Link>
+           <Link to={`/registrations/${props.record._id}`}>Registrations</Link>
         </div>
         <hr/> 
     </div>
