@@ -6,6 +6,7 @@ import { BiLock } from "react-icons/bi";
 import { MdOutlineMail } from "react-icons/md";
 import { FiUser } from "react-icons/fi";
 import { useNavigate } from 'react-router-dom';
+import Footer from './Footer';
 
 const AddAdmin = () => {
   let navigate = useNavigate();
@@ -91,7 +92,7 @@ const AddAdmin = () => {
       <div className="containerBox">
         <div className="container-flaot">
           <div>
-            <div className="img">
+            <div className="img5">
               <div className="img-container">
                 <img src={login} atl="login img" className="login" />
               </div>
@@ -142,7 +143,7 @@ const AddAdmin = () => {
                   onClick={postData}
                   value="Add Admin"
                 />
-              </div>
+              </div> 
             </form>
           </div>
         </div>
@@ -150,6 +151,7 @@ const AddAdmin = () => {
             <img src={Addadmin} alt="Login Image" className="Loginimg"/>
           </div>
       </div>
+      <Footer/>
     </> 
   )
 }

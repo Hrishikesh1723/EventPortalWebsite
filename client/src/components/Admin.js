@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import { BiLock } from "react-icons/bi";
 import { MdOutlineMail } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 
 const Admin = () => {
   let navigate = useNavigate();
@@ -62,7 +63,7 @@ const Admin = () => {
                   name="SignUp"
                   className="login-button"
                   onClick={loginAdmin}
-                  value="register"
+                  value="Login"
                 />
               </div>
             </form>
@@ -72,6 +73,7 @@ const Admin = () => {
             <img src={Adminimg} alt="Login Image" className="Loginimg"/>
           </div>
       </div>
+      <Footer/>
     </>
   )
 }

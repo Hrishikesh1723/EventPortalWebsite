@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Unavb from './Unavbar'
 import { useNavigate } from 'react-router-dom';
+import Footer from './Footer';
 
 const Profile = () => {
   let navigate = useNavigate();
@@ -46,6 +47,7 @@ const Profile = () => {
         <form method='GET'>
         </form>
     </div>
+    <Footer/>
     </>
   )
 }

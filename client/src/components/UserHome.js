@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import Unavbar from './Unavbar'
 import { useNavigate } from 'react-router-dom';
+import Footer from './Footer';
 
 const UserHome = () => {
   let navigate = useNavigate();
@@ -40,6 +41,7 @@ const UserHome = () => {
     <>
     <Unavbar/>
     <div>UserHome</div>
+    <Footer/>
     </>    
   )
 }

@@ -3,6 +3,7 @@ import Unavbar from "./Unavbar";
 import { useNavigate } from "react-router-dom";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
+import Footer from "./Footer";
 
 
 const Uevent = () => {
@@ -143,6 +144,7 @@ const Uevent = () => {
           <Record record={eve} key={eve._id} />
         ))}
       </div>
+      <Footer/>
     </>
   );
 };

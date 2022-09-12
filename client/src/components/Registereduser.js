@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Anavbar from "./Anavbar";
+import Footer from "./Footer";
 
 const Registereduser = () => {
   let navigate = useNavigate("");
@@ -150,6 +151,7 @@ const Registereduser = () => {
         />
         </div>
       </form>
+      <Footer/>
     </>
   );
 };

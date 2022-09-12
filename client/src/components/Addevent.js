@@ -1,55 +1,57 @@
-import React,{useState,useEffect} from 'react';
-import Anavbar from './Anavbar';
+import React, { useState, useEffect } from "react";
+import Anavbar from "./Anavbar";
+import axios from 'axios';
 import login from "../images/login.jpg";
 import AddEvent from "../images/Addevent.png";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { MdSubtitles } from "react-icons/md";
 import { BiMessageDetail } from "react-icons/bi";
 import { BsCalendarDate } from "react-icons/bs";
 import { BiTimeFive } from "react-icons/bi";
 import { HiHome } from "react-icons/hi";
+import { MdOutlineAddPhotoAlternate } from "react-icons/md";
+import Footer from "./Footer";
 
 const Addevent = () => {
   let navigate = useNavigate();
   const [userData, setUserData] = useState();
 
   const callProfilePage = async () => {
-    
     try {
-      const res = await fetch('/adminhome',{
+      const res = await fetch("/adminhome", {
         method: "GET",
-        headers:{
-          Accept:"application/json",
+        headers: {
+          Accept: "application/json",
           "Content-Type": "application/json",
         },
-        credentials:"include"
-        
+        credentials: "include",
       });
 
       const data = await res.json();
       console.log(data);
       setUserData(data);
 
-      if(!res.status === 200){
+      if (!res.status === 200) {
         const error = new Error(res.error);
         throw error;
       }
     } catch (err) {
       console.log(err);
-      navigate('/admin')
+      navigate("/admin");
     }
-  }
+  };
 
-  useEffect(() =>{
+  useEffect(() => {
     callProfilePage();
-  }, [])
+  }, []);
 
   const [event, setEvent] = useState({
-    title:"",
-    detail:"",
-    date:"",
-    time:"",
-    venue:"",
+    title: "",
+    detail: "",
+    date: "",
+    time: "",
+    venue: "",
+    image: "",
   });
 
   let name, value;
@@ -61,44 +63,41 @@ const Addevent = () => {
     setEvent({ ...event, [name]: value });
   };
 
+  const handlePhoto = (e) => {
+    setEvent({ ...event, image: e.target.files[0] });
+  };
+
   const postData = async (e) => {
     e.preventDefault();
 
-    const { title,detail,date,time,venue } = event;
+    const formData = new FormData();
+    formData.append('image',event.image,event.image.name)
+    formData.append('title',event.title)
+    formData.append('detail',event.detail)
+    formData.append('date',event.date)
+    formData.append('time',event.time)
+    formData.append('venue',event.venue)
 
-    const res = await fetch("/addevent", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title,
-        detail,
-        date,
-        time,
-        venue,
-      }),
-    });
+    const res = await axios.post("http://localhost:5000/addevent",formData);
+    console.log(res)
 
-    const data = await res.json();
-
-    if (res.status === 422 || !data) {
+    if (res.status === 422) {
       window.alert("Failed!");
       console.log("Failed!");
     } else {
       window.alert("Event added");
       console.log("Event added");
-      navigate("/adminhome");
+      navigate("/addevent");
     }
   };
 
   return (
     <>
-    <Anavbar/>
-    <div className="containerBox">
-        <div className="container-flaot">
+      <Anavbar />
+      <div className="containerBox">
+        <div className="container-flaot1">
           <div>
-            <div className="img">
+            <div className="img5">
               <div className="img-container">
                 <img src={login} atl="login img" className="login" />
               </div>
@@ -106,7 +105,7 @@ const Addevent = () => {
             <div className="login-page">Add Event</div>
             <form method="POST">
               <div className="firstInput">
-                <MdSubtitles size={25}/>
+                <MdSubtitles size={25} />
                 <input
                   type="text"
                   value={event.title}
@@ -118,19 +117,19 @@ const Addevent = () => {
                 />
               </div>
               <div className="secondInput">
-                <BiMessageDetail size={25}/>
-                <input
-                  type="textarea"
+                <BiMessageDetail size={25} />
+                <textarea
+                  type="text"
                   value={event.detail}
                   placeholder="Details"
-                  className="name"
+                  className="textarea"
                   onChange={handleInput}
                   name="detail"
                   autocomplete="off"
                 />
               </div>
               <div className="secondInput">
-                <BsCalendarDate size={25}/>
+                <BsCalendarDate size={25} />
                 <input
                   type="date"
                   value={event.date}
@@ -142,7 +141,7 @@ const Addevent = () => {
                 />
               </div>
               <div className="secondInput">
-                <BiTimeFive size={25}/>
+                <BiTimeFive size={25} />
                 <input
                   type="text"
                   value={event.time}
@@ -154,7 +153,7 @@ const Addevent = () => {
                 />
               </div>
               <div className="secondInput">
-                <HiHome size={25}/>
+                <HiHome size={25} />
                 <input
                   type="text"
                   value={event.venue}
@@ -163,6 +162,27 @@ const Addevent = () => {
                   onChange={handleInput}
                   name="venue"
                   autocomplete="off"
+                />
+              </div>
+              <div className="secondInput">
+              <MdOutlineAddPhotoAlternate size={25} />
+              <label htmlFor="inputTag">
+                Select Image
+                <input
+                  type="file"
+                  accept=".png, .jpg, .jpeg"
+                  id="inputTag"
+                  className="inputimg"
+                  name="image"
+                  onChange={handlePhoto}
+                />
+              </label>
+                <input
+                  type="file"
+                  accept=".png, .jpg, .jpeg"
+                  className="inputimg"
+                  name="image"
+                  onChange={handlePhoto}
                 />
               </div>
               <div className="padding1">
@@ -177,12 +197,13 @@ const Addevent = () => {
             </form>
           </div>
         </div>
-          <div className='container-flaot3'>
-            <img src={AddEvent} alt="Login Image" className="Loginimg"/>
-          </div>
+        <div className="container-flaot3">
+          <img src={AddEvent} alt="Login Image" className="Loginimg1" />
+        </div>
       </div>
-    </> 
-  )
-}
+      <Footer/>
+    </>
+  );
+};
 
-export default Addevent
+export default Addevent;

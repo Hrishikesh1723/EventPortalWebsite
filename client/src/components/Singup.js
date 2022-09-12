@@ -7,6 +7,7 @@ import { BiLock } from "react-icons/bi";
 import { MdOutlineMail } from "react-icons/md";
 import { FiUser } from "react-icons/fi";
 import { FaLock } from "react-icons/fa";
+import Footer from "./Footer";
 
 const Singup = () => {
   let navigate = useNavigate();
@@ -151,6 +152,7 @@ const Singup = () => {
             <img src={Signup} alt="Login Image" className="Loginimg"/>
           </div>
       </div>
+      <Footer/>
     </>
   );
 };

@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import Unavbar from './Unavbar'
 import { useNavigate } from 'react-router-dom';
+import Footer from './Footer';
 
 const Myevent = () => {
   let navigate = useNavigate();
@@ -62,6 +63,7 @@ const Myevent = () => {
           <Record record={eve} key={eve._id} />
         ))}
       </div>
+      <Footer/>
     </> 
   )
 }

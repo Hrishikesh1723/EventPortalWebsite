@@ -8,6 +8,7 @@ import { BiMessageDetail } from "react-icons/bi";
 import { BsCalendarDate } from "react-icons/bs";
 import { BiTimeFive } from "react-icons/bi";
 import { HiHome } from "react-icons/hi";
+import Footer from './Footer';
 
 const Edit = () => {
   let navigate = useNavigate('');
@@ -187,6 +188,7 @@ const Edit = () => {
             <img src={AddEvent} alt="Login Image" className="Loginimg"/>
           </div>
       </div>
+      <Footer/>
     </> 
   )
 }

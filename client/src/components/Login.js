@@ -5,6 +5,7 @@ import loginImage from "../images/Mobile-login-Cristina-removebg-preview.png";
 import Navbar from "./Navbar";
 import { BiLock } from "react-icons/bi";
 import { MdOutlineMail } from "react-icons/md";
+import Footer from "./Footer";
 
 const Login = () => {
   let navigate = useNavigate();
@@ -76,6 +77,7 @@ const Login = () => {
             <img src={loginImage} alt="Login Image" className="Loginimg"/>
           </div>
       </div>
+      <Footer/>
     </>
   );
 };

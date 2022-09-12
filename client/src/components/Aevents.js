@@ -1,6 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import Anavbar from './Anavbar';
+import Footer from './Footer';
+import About1 from "../images/about1.png";
 
 function Aevents() {
   let navigate = useNavigate();
@@ -48,10 +50,6 @@ function Aevents() {
   useEffect(() =>{
     callProfilePage();
   }, [])
-  let myStyle = {
-      minHeight: "70vh",
-      margin: "40px auto"
-  }
   const [events,setEvents]=useState([])
 
 
@@ -87,17 +85,22 @@ function Aevents() {
   
   const num = 10;
   const Record = (props) => (
-    <div className='container' style={myStyle}>
-    <h3 className="my-3">Event list</h3>
-        <div>
-           <h1>{props.record.title}</h1>
-           <h3>{props.record.detail}</h3>
-           <h3>{props.record.date}</h3>
-           <h3>{props.record.time}</h3>
-           <h3>{props.record.venue}</h3>
-           <button className="btn btn-sm btn-danger" onClick={() => deleteEve(props.record._id)}>Delete</button>
-           <Link to={`/edit/${props.record._id}`}>Edit</Link>
-           <Link to={`/registrations/${props.record._id}`}>Registrations</Link>
+    <div className='containerE'>
+        <div className='eventImg'>
+          <div >
+            <img src={props.record.image !== null ? `http://localhost:5000/images/${props.record.image}` : {About1} } className='eventImage' />
+          </div>
+        </div>
+        <div className='eventMain'>
+           <div className='Title'>{props.record.title}</div>
+           <div className='details'>{props.record.detail}</div>
+           <div className='info'>Date: {props.record.date}</div>
+           <div className='info'>Time: {props.record.time}</div>
+           <div className='info'>Venue: {props.record.venue}</div>
+           <div>{props.record.image}</div>
+           <button className="button-1" onClick={() => deleteEve(props.record._id)}>Delete</button>
+           <Link to={`/edit/${props.record._id}`} className="button-2">Edit</Link>
+           <Link to={`/registrations/${props.record._id}`} className="button-3">Registration</Link>
         </div>
         <hr/> 
     </div>
@@ -105,11 +108,15 @@ function Aevents() {
   return (
     <>
     <Anavbar/>
-    <div>
+    <div className="titleHead">
+    Event list
+    </div>
+    <div className='eventsMain'>
         {
-          events.map(eve => (<Record record={eve} key={eve._id}/>))
+          events.reverse().map(eve => (<Record record={eve} key={eve._id}/>))
         }
     </div>
+    <Footer/>
     </>
   )
 }
