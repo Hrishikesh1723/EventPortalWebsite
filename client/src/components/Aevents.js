@@ -88,7 +88,7 @@ function Aevents() {
     <div className='containerE'>
         <div className='eventImg'>
           <div >
-            <img src={props.record.image !== null ? `http://localhost:5000/images/${props.record.image}` : {About1} } className='eventImage' />
+            <img src={props.record.image !== undefined ? `http://localhost:5000/images/${props.record.image}` : {About1} } className='eventImage' />
           </div>
         </div>
         <div className='eventMain'>
@@ -97,7 +97,6 @@ function Aevents() {
            <div className='info'>Date: {props.record.date}</div>
            <div className='info'>Time: {props.record.time}</div>
            <div className='info'>Venue: {props.record.venue}</div>
-           <div>{props.record.image}</div>
            <button className="button-1" onClick={() => deleteEve(props.record._id)}>Delete</button>
            <Link to={`/edit/${props.record._id}`} className="button-2">Edit</Link>
            <Link to={`/registrations/${props.record._id}`} className="button-3">Registration</Link>

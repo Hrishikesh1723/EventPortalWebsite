@@ -719,7 +719,8 @@ svg{
 label{
   margin-left: 60px;
   margin-right: 100px;
-  font-size: 15px;
+  font-size: 20px;
+  cursor: pointer;
 }
 .container-flaot1{
   display: flex;
@@ -906,6 +907,7 @@ label{
   margin-bottom: 20px;
   height: 450px;
   width: 300px;
+  box-shadow: 18px 22px rgb(53, 74, 83);
   background-color: #939594;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
@@ -913,12 +915,13 @@ label{
 .eventMain{
   padding-left: 75px;
   padding-right: 75px;
-  padding-top: 30px;
+  padding-top: 50px;
   margin-top: 20px;
-  margin-bottom: 20px;
-  width: 700px;
+  margin-bottom: 30px;
+  width: 900px;
   height: 450px;
-  background-color: #bbbcbc;
+  box-shadow: 18px 22px rgb(53, 74, 83);
+  background-color: #c3f5f5;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
 
@@ -929,12 +932,129 @@ label{
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
 }
+.container1-flaot{
+  display: flex;
+  justify-content: center;
+  margin-top: 130px;
+  margin-left: 200px;
+  height: 600px;
+  width: 800px;
+  box-shadow: 11px 11px rgb(14, 104, 142);
+  padding-top: 30px;
+  border-top-left-radius:15px ;
+  border-bottom-left-radius:15px ;
+  border-top-right-radius:15px ;
+  border-bottom-right-radius:15px ;
+  background: linear-gradient(rgb(95, 122, 255),rgb(81, 243, 224));
+  
+}
+.editInput{
+  display: flex;
+  width: 600px;
+  padding-bottom: 20px;
+  border-bottom: solid black;
+  padding-top: 20px;
+}
+.editDetails{
+  margin: 15px;
+  margin-left: 50px;
+  font-size: 27px;
+}
+.name1{
+  border: solid #151414;
+  width: 300px;
+  background-color: white;
+}
+.name2{
+  margin-left: 17px;
+}
+.name3{
+  margin-left: 15px;
+}
+.name4{
+  margin-left: 7px;
+}
+.containerBox1{
+  display: flex;
+  background-color: rgb(217, 238, 247)
+}
+.container2{
+  height: 900px;
+  width: 300px;
+  background-color: #5eff66;
+}
+.editLable{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+}
+.Update-page{
+  font-size: 35px;
+  justify-self: center;
+  padding-left: 200px;
+  background-color: #151414;
+  color: white;
+}
+.padding2{
+  padding-top: 20px;
+  padding-left: 160px;
+}
+.eventImageEdit{
+  width: 250px;
+  height: 400px;
+  padding-left: 50px;
+  padding-top: 100px;
+}
+.imgcontainer{
+  width: 100%;
+  height: 500px;
+}
+.bgpic{
+  background: url('./images/background.png');
+  height: 1500px;
+}
+.about-container3{
+  margin-left: 530px;
+  padding-top: 150px;
+  font-size: 150px;
+  color: red;
+  font-family:serif ;
+
+}
+.eventDisplay{
+  display: flex;
+}
+.eventDisplay-cont1{
+  margin: 100px;
+  display: flex;
+
+}
+.eventDetails{
+  height: 400px;
+  width: 350px;
+  box-shadow: 11px 11px rgb(53, 74, 83);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 30px;
+  font-size: 25px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background-color: #daf465;
+}
+.eventDisplayimg{
+  height: 400px;
+  width: 350px;
+  box-shadow: 11px 11px rgb(53, 74, 83);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.event-card{
+  margin: 70px;
+}
 @media (min-width:625px) and (max-width:993px) {
   .containerBox{
     display: block;
   }
   .container-flaot{
-    margin-left: 20%;
+    margin-left: 20%; 
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-left-radius: 0px;

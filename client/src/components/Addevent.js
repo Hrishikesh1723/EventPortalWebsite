@@ -8,7 +8,7 @@ import { MdSubtitles } from "react-icons/md";
 import { BiMessageDetail } from "react-icons/bi";
 import { BsCalendarDate } from "react-icons/bs";
 import { BiTimeFive } from "react-icons/bi";
-import { HiHome } from "react-icons/hi";
+import { HiHome, HiOutlineStar } from "react-icons/hi";
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 import Footer from "./Footer";
 
@@ -71,23 +71,27 @@ const Addevent = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('image',event.image,event.image.name)
-    formData.append('title',event.title)
-    formData.append('detail',event.detail)
-    formData.append('date',event.date)
-    formData.append('time',event.time)
-    formData.append('venue',event.venue)
+    try {
+      formData.append('image',event.image,event.image.name)
+      formData.append('title',event.title)
+      formData.append('detail',event.detail)
+      formData.append('date',event.date)
+      formData.append('time',event.time)
+      formData.append('venue',event.venue)
 
-    const res = await axios.post("http://localhost:5000/addevent",formData);
-    console.log(res)
-
-    if (res.status === 422) {
-      window.alert("Failed!");
-      console.log("Failed!");
-    } else {
-      window.alert("Event added");
-      console.log("Event added");
-      navigate("/addevent");
+      const res = await axios.post("http://localhost:5000/addevent",formData);
+      console.log(res)
+  
+      if (res.status === 422) {
+        window.alert("Failed!");
+        console.log("Failed!");
+      } else {
+        window.alert("Event added");
+        console.log("Event added");
+        navigate("/addevent");
+      }
+    } catch (error) {
+      window.alert("Incomplete Details!")
     }
   };
 
@@ -177,13 +181,6 @@ const Addevent = () => {
                   onChange={handlePhoto}
                 />
               </label>
-                <input
-                  type="file"
-                  accept=".png, .jpg, .jpeg"
-                  className="inputimg"
-                  name="image"
-                  onChange={handlePhoto}
-                />
               </div>
               <div className="padding1">
                 <input

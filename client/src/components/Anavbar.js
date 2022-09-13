@@ -2,6 +2,7 @@ import React from 'react'
 import "bootstrap/dist/css/bootstrap.css";
 import { NavLink } from "react-router-dom";
 import Logo from "../images/EventiveLogo.png";
+import { RiLogoutBoxRLine } from "react-icons/ri";
 
 const Anavbar = () => {
   return (
@@ -18,7 +19,7 @@ const Anavbar = () => {
           <li type="none"><NavLink to="/aevents">Events</NavLink></li>
           <li type="none"><NavLink to="/addevent">AddEvent</NavLink></li>
           <li type="none"><NavLink to="/addadmin">New Admin</NavLink></li>
-          <li type="none"><NavLink to="/logout">logout</NavLink></li>
+          <li type="none"><NavLink to="/logout"><RiLogoutBoxRLine/></NavLink></li>
         </div>
       </ul>
     </nav>

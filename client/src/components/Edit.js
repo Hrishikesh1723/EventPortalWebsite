@@ -1,7 +1,5 @@
 import React,{useState,useEffect} from 'react';
 import Anavbar from './Anavbar';
-import login from "../images/login.jpg";
-import AddEvent from "../images/Addevent.png";
 import { useNavigate,useParams } from 'react-router-dom';
 import { MdSubtitles } from "react-icons/md";
 import { BiMessageDetail } from "react-icons/bi";
@@ -9,6 +7,7 @@ import { BsCalendarDate } from "react-icons/bs";
 import { BiTimeFive } from "react-icons/bi";
 import { HiHome } from "react-icons/hi";
 import Footer from './Footer';
+import About1 from "../images/about1.png";
 
 const Edit = () => {
   let navigate = useNavigate('');
@@ -25,7 +24,7 @@ const Edit = () => {
     let resp = await fetch(`/event/${params.id}`)
     resp = await resp.json();
     console.log(resp);
-    setEvent({...event,title:resp.title,detail:resp.detail,date:resp.date,time:resp.time,venue:resp.venue})
+    setEvent({...event,title:resp.title,detail:resp.detail,date:resp.date,time:resp.time,venue:resp.venue,image:resp.image})
   } 
 
   const callProfilePage = async () => {
@@ -107,72 +106,82 @@ const Edit = () => {
   return (
     <>
     <Anavbar/>
-    <div className="containerBox">
-        <div className="container-flaot">
+    <div className="containerBox1">
+      <div className='container2'>
+        <div className='imgcontainer'>
+          <img src={event.image !== undefined ? `http://localhost:5000/images/${event.image}` : {About1} } className='eventImageEdit' />
+        </div>
+        <div className='editDetails'>Title: {event.title}</div>
+        <div className='editDetails'>Date: {event.date}</div>
+        <div className='editDetails'>Time: {event.time}</div>
+        <div className='editDetails'>Venue: {event.venue}</div>
+        
+      </div>
+        <div className="container1-flaot">
           <div>
-            <div className="img">
-              <div className="img-container">
-                <img src={login} atl="login img" className="login" />
-              </div>
-            </div>
-            <div className="login-page">update Event</div>
+            <div className="Update-page">Update Event</div>
             <form method='PUT'>
-              <div className="firstInput">
+              <div className="editInput">
                 <MdSubtitles size={25}/>
+                <label classname="editLable">Title</label>
                 <input
                   type="text"
                   value={event.title}
                   placeholder="Title"
-                  className="name"
+                  className="name1 name2"
                   onChange={handleInput}
                   name="title"
                 />
               </div>
-              <div className="secondInput">
+              <div className="editInput">
                 <BiMessageDetail size={25}/>
-                <input
-                  type="textarea"
+                <label classname="editLable">Details</label>
+                <textarea
+                  type="text"
                   value={event.detail}
                   placeholder="Details"
-                  className="name"
+                  className="name1 "
                   onChange={handleInput}
                   name="detail"
                 />
               </div>
-              <div className="secondInput">
+              <div className="editInput">
                 <BsCalendarDate size={25}/>
+                <label>Date</label>
                 <input
                   type="text"
                   value={event.date}
                   placeholder="Date"
-                  className="name"
+                  className="name1 name3"
                   onChange={handleInput}
                   name="date"
                 />
               </div>
-              <div className="secondInput">
+              <div className="editInput">
                 <BiTimeFive size={25}/>
+                <label classname="editLable">Time</label>
                 <input
                   type="text"
                   value={event.time}
                   placeholder="Time"
-                  className="name"
+                  className="name1 name3"
                   onChange={handleInput}
                   name="time"
                 />
               </div>
-              <div className="secondInput">
+              <div className="editInput">
                 <HiHome size={25}/>
+                <label classname="editLable">Venue</label>
                 <input
                   type="text"
                   value={event.venue}
                   placeholder="Venue"
-                  className="name"
+                  className="name1 name4"
                   onChange={handleInput}
                   name="venue"
                 />
               </div>
-              <div className="padding1">
+              <div className="padding2">
                 <input
                   type="submit"
                   name="Edit"
@@ -184,9 +193,6 @@ const Edit = () => {
             </form>
           </div>
         </div>
-          <div className='container-flaot3'>
-            <img src={AddEvent} alt="Login Image" className="Loginimg"/>
-          </div>
       </div>
       <Footer/>
     </> 
