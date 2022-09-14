@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import Unavbar from './Unavbar'
 import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
+import About1 from "../images/about1.png";
 
 const Myevent = () => {
   let navigate = useNavigate();
@@ -34,22 +35,45 @@ const Myevent = () => {
     }
   }
 
-  let myStyle = {
-    minHeight: "70vh",
-    margin: "40px auto",
-  };
+  const deleteEve = async (id) => {
+    console.log(userData._id)
+    if(window.confirm ("Do you really want to delete the event")){
+      const res = await fetch(`/userevent/${id}`, {
+        method:'DELETE',
+        headers:{
+          "Content-Type": "application/json",
+        },
+        body:JSON.stringify({
+          id:userData._id
+        })
+      });
+    
+    if(res===400){
+      console.log(res)
+    }else{
+      console.log(res)
+    }
+    }
+    window.location.reload(true)
+    
+}
 
   const Record = (props) => (
-    <div className="container" style={myStyle}>
-      <h3 className="my-3">Event list</h3>
-      <div>
-        <h1>{props.record.title}</h1>
-        <h3>{props.record.detail}</h3>
-        <h3>{props.record.date}</h3>
-        <h3>{props.record.time}</h3>
-        <h3>{props.record.venue}</h3>
-      </div>
-      <hr />
+    <div className='containerE'>
+        <div className='eventImg'>
+          <div >
+            <img src={props.record.image !== undefined ? `http://localhost:5000/images/${props.record.image}` : {About1} } className='eventImage' />
+          </div>
+        </div>
+        <div className='eventMain'>
+           <div className='Title'>{props.record.title}</div>
+           <div className='details'>{props.record.detail}</div>
+           <div className='info'>Date: {props.record.date}</div>
+           <div className='info'>Time: {props.record.time}</div>
+           <div className='info'>Venue: {props.record.venue}</div>
+           <button className="button-1" onClick={() => deleteEve(props.record._id)}>Remove</button>
+        </div>
+        <hr/> 
     </div>
   );
   useEffect(() =>{
@@ -58,8 +82,11 @@ const Myevent = () => {
   return (
     <>
     <Unavbar/>
+    <div className="titleHead">
+      Registered Event list
+    </div>
       <div>
-        {userData.events?.map((eve) => (
+        {userData.events?.reverse().map((eve) => (
           <Record record={eve} key={eve._id} />
         ))}
       </div>

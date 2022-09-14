@@ -113,9 +113,9 @@ router.get(`/logout`, (req, res) => {
 // User registerd event Page
 router.post(`/registerevent`, authenticate, async (req, res) => {
   try {
-    const {title,detail,date,time,venue,uname,uemail} = req.body;
+    const {title,detail,date,time,venue,image,uname,uemail} = req.body;
 
-    if(!title || !detail || !date || !time || !venue || !uname || !uemail){
+    if(!title || !detail || !date || !time || !venue || !uname || !uemail || !image){
       return res.json({ error:"Empty Data!"})
     }
 
@@ -134,7 +134,7 @@ router.post(`/registerevent`, authenticate, async (req, res) => {
     const userEvent = await User.findOne({_id: req.userID });
 
     if (userEvent){
-      const addEve = await userEvent.addEvents(title,detail,date,time,venue);
+      const addEve = await userEvent.addEvents(title,detail,date,time,venue,image);
       
       await userEvent.save();
 

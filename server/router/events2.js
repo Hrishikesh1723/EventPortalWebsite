@@ -1,5 +1,6 @@
 require('../db/connection');
 const Event = require("../moduls/eventSchema");
+const User = require("../moduls/userSchema");
 
 createEvent = (req, res) => {
     const body = req.body
@@ -16,7 +17,7 @@ createEvent = (req, res) => {
     if (!event) {
         return res.status(400).json({ success: false, error: err })
     }
-
+ 
     event
         .save()
         .then(() => {
@@ -87,7 +88,17 @@ deleteEvent = async (req, res) => {
         }
 
         return res.status(200).json({ success: true, data: event })
-    }).catch(err => console.log(err))
+    }).catch(err => console.log(err)) 
+}
+
+deleteUserEvent = async (req, res) => {
+    console.log(req.body)
+    await User.findByIdAndUpdate(
+        { _id: req.body.id },
+        { $pull: { events: { _id: req.params.id } } },
+        { safe: true, multi: false }
+    )
+    return res.status(200).json({ message: "event Deleted Successfully" });
 }
 
 getEventById = async (req, res) => {
@@ -97,7 +108,7 @@ getEventById = async (req, res) => {
         }
 
         if (!event) {
-            return res
+            return res  
                 .status(404)
                 .json({ success: false, error: `Event not found` })
         }
@@ -125,4 +136,5 @@ module.exports = {
     deleteEvent,
     getEvents,
     getEventById,
+    deleteUserEvent,
 }

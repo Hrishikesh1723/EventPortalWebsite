@@ -40,8 +40,10 @@ const userSchema = new mongoose.Schema({
             venue:{
                 type: String,
                 require: true
+            },
+            image:{
+                type: String,
             }
-
         }
     ],
     tokens:[
@@ -55,9 +57,9 @@ const userSchema = new mongoose.Schema({
 });
 
 // adding registred events
-userSchema.methods.addEvents = async function (title,detail,date,time,venue){
+userSchema.methods.addEvents = async function (title,detail,date,time,venue,image){
     try {
-        this.events = this.events.concat({title,detail,date,time,venue});
+        this.events = this.events.concat({title,detail,date,time,venue,image});
         await this.save();
         return this.events;
     } catch (error) {
@@ -65,7 +67,7 @@ userSchema.methods.addEvents = async function (title,detail,date,time,venue){
     }
 }
 
-// securing password 
+// securing password  
 
 userSchema.pre('save', async function(next) {
     if(this.isModified('password')){

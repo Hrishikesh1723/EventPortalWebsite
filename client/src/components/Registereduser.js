@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Anavbar from "./Anavbar";
 import Footer from "./Footer";
+import user from "../images/usericon.jpg"
 
 const Registereduser = () => {
   let navigate = useNavigate("");
@@ -102,28 +103,48 @@ const Registereduser = () => {
   };
 
   const Record = (props) => (
-    <div className="container">
-      <h3 className="my-3">Event list</h3>
-      <div>
-        <h1>{props.record.name}</h1>
-        <h3>{props.record.email}</h3>
+    <div className="containerU">
+    <div className='eventImgU'>
+      <div >
+        <img src={user} className='eventImageU' />
+      </div>
+    </div>
+      <div className='ruserMain'>
+        <div className="info">Name: {props.record.name}</div>
+        <div className="info">Email: {props.record.email}</div>
       </div>
       <hr />
     </div>
   );
 
-  return (
+  return ( 
     <>
       <Anavbar />
+    <div className="titleHead">
+    Registered User
+    </div>
       <div>
         {users?.map((eve) => (
           <Record record={eve} key={eve._id} />
         ))}
       </div>
+      <div className="bg-color-g">
+      <div className="message">
+       <p>&#8594; Message to all registered Users: </p>
+      </div>
+      <div className="sendEmailBox">
+        <div className="sendEmailBox1">
+          <div className="titleHead1">
+            Email
+          </div>
       <form method="POST">
-        <div>
+        <div className="Subjectcont">
+        <label className="sublabel">
+          Subject: 
+        </label>
         <input
           type="text"
+          className="subjectBox"
           placeholder="Subject"
           name="subject"
           autocomplete="off"
@@ -131,26 +152,36 @@ const Registereduser = () => {
           onChange={handleInputs}
         />
         </div>
-        <div>
-        <input
+        
+        <div className="Msgjectcont">
+        <label className="msglabel">
+          Message: 
+        </label>
+        <div >
+        <textarea
           type="text"
-          placeholder="Subject"
+          placeholder="message to registered users..."
+          className="messageBox"
           name="message"
           autocomplete="off"
           value={content.message}
           onChange={handleInputs}
         />
         </div>
+        </div>
         <div>
         <input
           type="submit"
           name="SignUp"
-          className="btn btn-sm btn-danger"
+          className="button-2 padding-left"
           onClick={sendEmail}
           value="SEND MAIL"
         />
         </div>
       </form>
+      </div>
+      </div>
+      </div>
       <Footer/>
     </>
   );

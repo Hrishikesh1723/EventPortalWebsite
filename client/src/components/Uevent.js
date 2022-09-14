@@ -3,6 +3,7 @@ import Unavbar from "./Unavbar";
 import { useNavigate } from "react-router-dom";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
+import About1 from "../images/about1.png";
 import Footer from "./Footer";
 
 
@@ -80,14 +81,14 @@ const Uevent = () => {
   }, []);
 
   // sending data of registerd event
-  const registerdEvent = async (title,detail,date,time,venue) => {    
+  const registerdEvent = async (title,detail,date,time,venue,image) => {    
     const res = await fetch('/registerevent',{
       method:"POST",
       headers:{
         "Content-Type": "application/json",
       },
       body:JSON.stringify({
-        title,detail,date,time,venue,uname:userData.name,uemail:userData.email
+        title,detail,date,time,venue,image,uname:userData.name,uemail:userData.email
       })
     });
 
@@ -120,17 +121,21 @@ const Uevent = () => {
   }
 
   const Record = (props) => (
-    <div className="container" style={myStyle}>
-      <h3 className="my-3">Event list</h3>
-      <div>
-        <h1>{props.record.title}</h1>
-        <h3>{props.record.detail}</h3>
-        <h3>{props.record.date}</h3>
-        <h3>{props.record.time}</h3>
-        <h3>{props.record.venue}</h3>
-        <button className="btn btn-sm btn-danger" onClick={() => registerdEvent(props.record.title,props.record.detail,props.record.date,props.record.time,props.record.venue)}>Register</button>
-      </div>
-      <hr />
+    <div className='containerE'>
+        <div className='eventImg'>
+          <div >
+            <img src={props.record.image !== undefined ? `http://localhost:5000/images/${props.record.image}` : {About1} } className='eventImage' />
+          </div>
+        </div>
+        <div className='eventMain'>
+           <div className='Title'>{props.record.title}</div>
+           <div className='details'>{props.record.detail}</div>
+           <div className='info'>Date: {props.record.date}</div>
+           <div className='info'>Time: {props.record.time}</div>
+           <div className='info'>Venue: {props.record.venue}</div>
+        <button className="button-3" onClick={() => registerdEvent(props.record.title,props.record.detail,props.record.date,props.record.time,props.record.venue,props.record.image)}>Register</button>
+        </div>
+        <hr/> 
     </div>
   );
   return (
@@ -139,11 +144,14 @@ const Uevent = () => {
       {/* <div className="result-calendar">
         <Calendar onChange={onChange} value={calDate} />
       </div> */}
-      <div>
-        {events.map((eve) => (
-          <Record record={eve} key={eve._id} />
-        ))}
-      </div>
+    <div className="titleHead">
+    Event list
+    </div>
+    <div className='eventsMain'>
+        {
+          events.reverse().map(eve => (<Record record={eve} key={eve._id}/>))
+        }
+    </div>
       <Footer/>
     </>
   );

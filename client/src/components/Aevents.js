@@ -17,7 +17,7 @@ function Aevents() {
           Accept:"application/json",
           "Content-Type": "application/json",
         },
-        credentials:"include"
+        credentials:"include" 
         
       });
 
@@ -36,7 +36,7 @@ function Aevents() {
   }
   const deleteEve = async (id) => {
     if(window.confirm ("Do you really want to delete the event")){
-      const res = await fetch(`/event/${id}`, { method: 'DELETE' });
+      const res = await fetch(`/event/${id}`, { method: 'DELETE' ,});
     if(res===400){
       console.log(res)
     }else{

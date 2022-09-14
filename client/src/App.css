@@ -1049,6 +1049,104 @@ label{
 .event-card{
   margin: 70px;
 }
+.eventImgU{
+  margin-left: 100px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 100px;
+  width: 100px;
+  box-shadow: 18px 22px rgb(53, 74, 83);
+  background-color: #939594;
+}
+.eventImageU{
+  width: 100px;
+  height: 100px;
+}
+.ruserMain{
+  padding-left: 150px;
+  padding-right: 75px;
+  padding-top: 12px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  width: 900px;
+  height: 100px;
+  box-shadow: 18px 22px rgb(53, 74, 83);
+  background-color: #c3f5f5;
+}
+.containerU{
+  display: flex;
+  margin-left: 10%;
+}
+.sendEmailBox{
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+  width: 500px;
+  margin: 7%;
+  margin-left: 35%;
+  border: solid #151414;
+}
+.sendEmailBox{
+  align-items: center;
+  justify-content: center;
+
+}
+.subjectBox{
+  border: solid black;
+  background-color: white;
+}
+.sublabel{
+  margin-right: 30px ;
+  font-size: 30px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.msglabel{
+  margin-right: 25px ;
+  margin-left: -5px;
+  padding-top: -45px;
+  align-items: center;
+  font-size: 30px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.Subjectcont{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.titleHead1{
+  height: 75px;
+  width: 100%;
+  background-color: #3787f7;
+  font-size: 45px;
+  padding-left: 37%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.messageBox{
+  border: solid black;
+  width: 250px;
+  height: 200px;
+
+}
+.Msgjectcont{
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  justify-content: center;
+  align-items: center;
+
+}
+.padding-left{
+  margin-left: 23%;
+}
+.message{
+  padding-left: 5%;
+  padding-top: 5%;
+  font-size: 35px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.bg-color-g{
+  background-color: #dee4e1;
+  height: 900px;
+}
 @media (min-width:625px) and (max-width:993px) {
   .containerBox{
     display: block;
