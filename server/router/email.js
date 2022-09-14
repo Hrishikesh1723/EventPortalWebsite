@@ -80,9 +80,44 @@ router.post('/sendemail', (req, res, next) => {
       from:
       ${req.body.name}
       regards`,
+ 
+    html:`
+    <h2>Dear ${req.body.uname},</h2>
+    <br/>
+    <br/>
+    <img src="cid:uniq-${req.body.image}"/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <h4>${req.body.message}</h4>
+    <br/>
+    <br/>
+    <h3>${req.body.title}</h3>
+    <h5>${req.body.edetail}</h5>
+    <h4>Date: ${req.body.edate}</h4>
+    <h4>Time: ${req.body.etime}</h4> 
+    <h4>Venue: ${req.body.evenue}</h4>
+    <br/>
+    <br/>
+    
+    <h4>from:</h4>
+    <h4>${req.body.name}</h4>
+    <h4>regards</h4>
+    </p>
+    `,
+      attachments: [
+          {
+              filename: req.body.image,
+              path: '../server/images/' + req.body.image,
+              cid: 'uniq-'+req.body.image
+          }
+      ]
     }
+    console.log(" cdj df")
     transporter.sendMail(mail, (err, data) => {
         if (err) {
+            console.log(err);
             res.json({
                 status: 'fail',
             })
@@ -92,6 +127,7 @@ router.post('/sendemail', (req, res, next) => {
             })
         }
     })
+    return
 })
 
 

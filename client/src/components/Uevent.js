@@ -91,7 +91,7 @@ const Uevent = () => {
         title,detail,date,time,venue,image,uname:userData.name,uemail:userData.email
       })
     });
-
+    console.log(detail)
     const resp = await fetch("/sendemail", {
       method: "POST",
       headers: {
@@ -100,14 +100,15 @@ const Uevent = () => {
       body: JSON.stringify({
         toemail:userData.email,
         uname:userData.name,
-        subject:"Event Registration successful!",
-        message:`You Have register For Event
-        ${title}
-        Detail: ${detail}
-        Date: ${date}
-        Time: ${time}
-        Venue: ${venue}`,
-        name:"Eventive"
+        subject:"Event Registration successful!", 
+        title:title,
+        edetail:detail,
+        edate:date,
+        etime:time,
+        evenue:venue,
+        message:`You Have register For Event`,
+        name:"Eventive",
+        image:image
       }),
     });
 
