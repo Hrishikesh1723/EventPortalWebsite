@@ -1,7 +1,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
-const cookieParser = require('cookie-parser')
+const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const authenticate = require("../middleware/authenticate");
 
@@ -9,7 +9,7 @@ require("../db/connection");
 const User = require("../moduls/userSchema");
 const Event = require("../moduls/eventSchema");
 
-router.use(cookieParser())
+router.use(cookieParser());
 
 // main page
 router.get(`/`, (req, res) => {
@@ -46,6 +46,7 @@ router.post("/register", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+  return
 });
 
 // login
@@ -61,31 +62,27 @@ router.post("/login", async (req, res) => {
     const userLogin = await User.findOne({ email: email });
 
     if (userLogin) {
-
       const passwordMatch = await bcrypt.compare(password, userLogin.password);
 
       token = await userLogin.generateAuthToken();
 
       res.cookie("jwtoken", token, {
-          expires: new Date(Date.now() + 25892000000),
-          httpOnly:true
+        expires: new Date(Date.now() + 25892000000),
+        httpOnly: true,
       });
 
-      if(!passwordMatch){
-
-          res.status(400).json({message:"Invalid Credentials!"});
-
-      }else{
-
-          res.status(200).json({message: "Login Successfull!"});
+      if (!passwordMatch) {
+        res.status(400).json({ message: "Invalid Credentials!" });
+      } else {
+        res.status(200).json({ message: "Login Successfull!" });
       }
-      }else{
-
-          res.status(400).json({message:"Invalid Credentials!"});
-      }
+    } else {
+      res.status(400).json({ message: "Invalid Credentials!" });
+    }
   } catch (err) {
     console.log(err);
   }
+  return
 });
 
 // profile Page
@@ -107,45 +104,72 @@ router.get(`/myevent`, authenticate, (req, res) => {
 // logout
 router.get(`/logout`, (req, res) => {
   console.log("User logout");
-  res.clearCookie('jwtoken',{path:'/'});
-  res.status(200).send('user logout');
+  res.clearCookie("jwtoken", { path: "/" });
+  res.status(200).send("user logout");
 });
 // User registerd event Page
 router.post(`/registerevent`, authenticate, async (req, res) => {
   try {
-    const {title,detail,date,time,venue,image,uname,uemail} = req.body;
+    const { title, detail, date, time, venue, image, uname, uemail } = req.body;
 
-    if(!title || !detail || !date || !time || !venue || !uname || !uemail || !image){
-      return res.json({ error:"Empty Data!"})
+    if (
+      !title ||
+      !detail ||
+      !date ||
+      !time ||
+      !venue ||
+      !uname ||
+      !uemail ||
+      !image
+    ) {
+      return res.json({ error: "Empty Data!" });
     }
 
-    const eventInfo = await Event.findOne({title:title});
+    const userEvent = await User.findOne({ _id: req.userID });
 
-    if (eventInfo){
-      const addUD = await eventInfo.addUserDetail(uname,uemail);
-      
-      await eventInfo.save();
+    //checking that if event already exist.
+    const userEvent1 = await User.findOne({ _id: req.userID }, {
+      events:{
+         $elemMatch:{title: title }}})
 
-      res.status(200).json({message:"User details added!"})
+    if(userEvent1.events?.length ===  0){
+
+      const eventInfo = await Event.findOne({ title: title });
+
+      if (eventInfo) {
+        const addUD = await eventInfo.addUserDetail(uname, uemail);
+
+        await eventInfo.save();
+
+        res.status(200).json({ message: "User details added!" });
+      } else {
+        res.status(400).json({ message: "User details not added!" });
+      }
+
+      if (userEvent) {
+        const addEve = await userEvent.addEvents(
+          title,
+          detail,
+          date,
+          time,
+          venue,
+          image
+        );
+  
+        await userEvent.save();
+  
+        res.status(200).json({ message: "Event registered" });
+      } else {
+        res.status(400).json({ message: "Event not registered" });
+      }
     }else{
-      res.status(400).json({message:"User details not added!"})
+      res.status(401).json({ message: "Event already registered" });
     }
-
-    const userEvent = await User.findOne({_id: req.userID });
-
-    if (userEvent){
-      const addEve = await userEvent.addEvents(title,detail,date,time,venue,image);
-      
-      await userEvent.save();
-
-      res.status(200).json({message:"Event registered"})
-    }else{
-      res.status(400).json({message:"Event not registered"})
-    }
-
+    
   } catch (error) {
-    console.log(error); 
+    console.log(error);
   }
+  return
 });
 
 module.exports = router;

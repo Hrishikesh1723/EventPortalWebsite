@@ -4,7 +4,6 @@ const Event = require('./events2')
 
 const router = express.Router()
 
-router.post('/event', Event.createEvent)
 router.put('/event/:id', Event.updateEvent)
 router.delete('/event/:id', Event.deleteEvent)
 router.delete('/userevent/:id', Event.deleteUserEvent)

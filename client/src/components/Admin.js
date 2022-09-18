@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import login from "../images/login.jpg";
 import Adminimg from "../images/Mobile-login-Cristina-removebg-preview.png";
 import Navbar from "./Navbar";
@@ -10,31 +10,33 @@ import Footer from "./Footer";
 const Admin = () => {
   let navigate = useNavigate();
 
-  const [email,setEmail] = useState('');
-  const [password,setPassword] = useState('');
+  //Defining admin data. 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
+  //sending user input data to backend to serch admin in database and responce accordingly.
   const loginAdmin = async (e) => {
     e.preventDefault();
 
-    const res = await fetch('/admin',{
-      method:"POST",
-      headers:{
+    const res = await fetch("/admin", {
+      method: "POST",
+      headers: {
         "Content-Type": "application/json",
       },
-      body:JSON.stringify({
+      body: JSON.stringify({
         email,
-        password
-      })
+        password,
+      }),
     });
 
     const data = res.json();
-    if(res.status === 400 || !data){
+    if (res.status === 400 || !data) {
       window.alert("Invalid credential");
-    }else{
+    } else {
       window.alert("Login Successful!");
       navigate("/adminhome");
     }
-  }
+  };
 
   return (
     <>
@@ -49,14 +51,26 @@ const Admin = () => {
             </div>
             <div className="login-page">Admin login</div>
             <form>
-            <div className="firstInput">
-              <MdOutlineMail size={25} />
-              <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" className="name" />
-            </div>
-            <div className="secondInput">
-              <BiLock size={25} />
-              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="name" />
-            </div>
+              <div className="firstInput">
+                <MdOutlineMail size={25} />
+                <input
+                  type="text"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email"
+                  className="name"
+                />
+              </div>
+              <div className="secondInput">
+                <BiLock size={25} />
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  className="name"
+                />
+              </div>
               <div className="padding1">
                 <input
                   type="submit"
@@ -69,13 +83,13 @@ const Admin = () => {
             </form>
           </div>
         </div>
-          <div className="container-flaot3">
-            <img src={Adminimg} alt="Login Image" className="Loginimg"/>
-          </div>
+        <div className="container-flaot3">
+          <img src={Adminimg} alt="Login Image" className="Loginimg" />
+        </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Admin
+export default Admin;

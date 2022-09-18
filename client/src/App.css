@@ -71,10 +71,6 @@ html {
   width: 100%;
 }
 
-
-
-
-
 header {
   text-align: center;
   vertical-align: middle;
@@ -710,12 +706,6 @@ svg{
   vertical-align: top;
   margin-right: 10px;
 }
-.inputimg{
-  background: none;
-  display: none;
-  margin-left: 50px;
-  padding-left: 50px;
-}
 label{
   margin-left: 60px;
   margin-right: 100px;
@@ -882,7 +872,7 @@ label{
   width: 100%;
   background-color: #c7cecb;
   font-size: 75px;
-  padding-left: 400px;
+  padding-left: 600px;
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 .Title{
@@ -1147,7 +1137,133 @@ label{
   background-color: #dee4e1;
   height: 900px;
 }
+.container-1{
+  display: flex;
+}
+.container-2{
+  margin: 20%;
+  height: 900px;
+  width: 900px;
+  background-color: #00f18b;
+  border-radius: 25px;
+  box-shadow: 23px 25px 5px rgb(73, 73, 73);
+}
+.container-3{
+  margin-top: 10%;
+  margin-left: 35%;
+
+}
+.user{
+  height: 200px;
+  width: 200px;
+  align-items: center;
+  border-radius: 25px;
+  box-shadow: 12px 15px 2px black;
+
+}
+.container-5{
+  display: flex;
+  margin: 50px;
+  margin-left: 25%;
+  margin-top: 100px;
+  font-family: 'Times New Roman', Times, serif;
+}
+.container-6{
+  font-size: 45px;
+  font-family: 'Times New Roman', Times, serif;
+}
+.container-7{
+  margin-left: 20px;
+  font-size: 45px;
+  font-family: 'Times New Roman', Times, serif;
+}
+.container-9{
+  margin-top: -30px;
+  margin-left: 20px;
+  font-size: 35px;
+  margin-left: -20%;
+  font-family: 'Times New Roman', Times, serif;
+}
+.container-8{
+  margin-top: -30px;
+  margin-left: 20px;
+  font-size: 35px;
+  font-family: 'Times New Roman', Times, serif;
+}
+.checklist{
+  margin-left: 33%;
+  width: 500px;
+  height: 200px;
+  padding-top: 20px;
+  font-size: 18px;
+  padding-left: 100px;
+  background-color: #808790;
+  border-radius: 25px;
+  box-shadow: 9px 11px 2px rgb(14, 33, 42);
+}
+.bg-org{
+  padding-top: 50px;
+  background-color:rgb(217, 238, 247);
+  margin-bottom: -2px;
+  margin-top: -2px;
+  height: 265px;
+}
+.alternativeBlock{
+  height: 600px;
+  background-color: #d5fff8;
+  align-items: center;
+  justify-content: center;
+  padding-left: 17%;
+  padding-top: 12%;
+  font-size: 65px;
+  color: rgb(232, 39, 39);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+@media (min-width:993px) and (max-width:1150px){
+  
+.container-9{
+  margin-top: -30px;
+  margin-left: 20px;
+  font-size: 30px;
+  margin-left: -20%;
+  font-family: 'Times New Roman', Times, serif;
+}
+.container-8{
+  margin-top: -30px;
+  margin-left: 20px;
+  font-size: 30px;
+  font-family: 'Times New Roman', Times, serif;
+}
+}
 @media (min-width:625px) and (max-width:993px) {
+  .container-2{
+    margin-left: 13%;
+
+  }
+  .container-3{
+    margin-left: 29%;
+  }
+  .container-5{
+    display: flex;
+    margin: 50px;
+    margin-left: 15%;
+    margin-top: 80px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .container-9{
+    margin-top: -30px;
+    margin-left: 20px;
+    font-size: 27px;
+    margin-left: -10%;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  .container-8{
+    margin-top: -30px;
+    margin-left: 20px;
+    font-size: 27px;
+    font-family: 'Times New Roman', Times, serif;
+  }
   .containerBox{
     display: block;
   }
@@ -1193,6 +1309,34 @@ label{
   }
 }
 @media (min-width:517px) and (max-width:625px) {
+  .container-2{
+    margin: 3%;
+
+  }
+  .container-3{
+    margin-left: 29%;
+  }
+  .container-5{
+    display: flex;
+    margin: 50px;
+    margin-left: 15%;
+    margin-top: 80px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .container-9{
+    margin-top: -30px;
+    margin-left: 20px;
+    font-size: 27px;
+    margin-left: -10%;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  .container-8{
+    margin-top: -30px;
+    margin-left: 20px;
+    font-size: 27px;
+    font-family: 'Times New Roman', Times, serif;
+  }
   .containerBox{
     display: block;
   }
@@ -1242,6 +1386,52 @@ label{
   }
 }
 @media (min-width:280px) and (max-width:517px) {
+  .container-2{
+    margin: 3%;
+    width: 80%;
+    height: 500px;
+
+  }
+  .container-3{
+    margin-left: 30%;
+    height: 115px;
+    width: 115px;
+  }
+  .user{
+    height: 100px;
+    width: 100px;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: 6px 8px 1px black;
+
+  }
+  .container-6{
+    font-size: 20px;
+  }
+  .container-7{
+    font-size: 20px;
+  }
+  .container-5{
+    display: flex;
+    margin: 30px;
+    margin-left: 10%;
+    margin-top: 50px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .container-9{
+    margin-top: -30px;
+    margin-left: 20px;
+    font-size: 15px;
+    margin-left: -0%;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  .container-8{
+    margin-top: -30px;
+    margin-left: 5px;
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+  }
   .containerBox{
     display: block;
   }

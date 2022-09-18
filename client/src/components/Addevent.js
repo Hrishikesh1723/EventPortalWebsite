@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Anavbar from "./Anavbar";
-import axios from 'axios';
+import axios from "axios";
 import login from "../images/login.jpg";
 import AddEvent from "../images/Addevent.png";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +16,8 @@ const Addevent = () => {
   let navigate = useNavigate();
   const [userData, setUserData] = useState();
 
-  const callProfilePage = async () => {
+  // Getting data of current admin and authenticating the admin.
+  const adminData = async () => {
     try {
       const res = await fetch("/adminhome", {
         method: "GET",
@@ -42,9 +43,10 @@ const Addevent = () => {
   };
 
   useEffect(() => {
-    callProfilePage();
+    adminData();
   }, []);
 
+  //Defining new event data.
   const [event, setEvent] = useState({
     title: "",
     detail: "",
@@ -54,6 +56,7 @@ const Addevent = () => {
     image: "",
   });
 
+  //Handling the inputs and setting them to new Event data.
   let name, value;
   const handleInput = (e) => {
     console.log(e);
@@ -63,25 +66,27 @@ const Addevent = () => {
     setEvent({ ...event, [name]: value });
   };
 
+  //Handling the inputs of image and setting it to new Event data.
   const handlePhoto = (e) => {
     setEvent({ ...event, image: e.target.files[0] });
   };
 
+  //adding new event data to database.
   const postData = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
     try {
-      formData.append('image',event.image,event.image.name)
-      formData.append('title',event.title)
-      formData.append('detail',event.detail)
-      formData.append('date',event.date)
-      formData.append('time',event.time)
-      formData.append('venue',event.venue)
+      formData.append("image", event.image, event.image.name);
+      formData.append("title", event.title);
+      formData.append("detail", event.detail);
+      formData.append("date", event.date);
+      formData.append("time", event.time);
+      formData.append("venue", event.venue);
 
-      const res = await axios.post("http://localhost:5000/addevent",formData);
-      console.log(res)
-  
+      const res = await axios.post("http://localhost:5000/addevent", formData);
+      console.log(res);
+
       if (res.status === 422) {
         window.alert("Failed!");
         console.log("Failed!");
@@ -91,7 +96,7 @@ const Addevent = () => {
         navigate("/addevent");
       }
     } catch (error) {
-      window.alert("Incomplete Details!")
+      window.alert("Incomplete Details!");
     }
   };
 
@@ -169,18 +174,15 @@ const Addevent = () => {
                 />
               </div>
               <div className="secondInput">
-              <MdOutlineAddPhotoAlternate size={25} />
-              <label htmlFor="inputTag">
-                Select Image
-                <input
-                  type="file"
-                  accept=".png, .jpg, .jpeg"
-                  id="inputTag"
-                  className="inputimg"
-                  name="image"
-                  onChange={handlePhoto}
-                />
-              </label>
+                <MdOutlineAddPhotoAlternate size={25} />
+                  <input
+                    type="file"
+                    accept=".png, .jpg, .jpeg"
+                    id="inputTag"
+                    className="inputimg"
+                    name="image"
+                    onChange={handlePhoto}
+                  />
               </div>
               <div className="padding1">
                 <input
@@ -198,7 +200,7 @@ const Addevent = () => {
           <img src={AddEvent} alt="Login Image" className="Loginimg1" />
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

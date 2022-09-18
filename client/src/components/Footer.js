@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { AiTwotoneMail } from "react-icons/ai";
 import { FiPhoneCall } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
@@ -12,7 +12,7 @@ const Footer = () => {
           <div className="row">
             <div className="col-xl-4 col-md-4 mb-30">
               <div className="single-cta">
-                <GoLocation color="rgb(65 91 208)" size={40}  />
+                <GoLocation color="rgb(65 91 208)" size={40} />
                 <div className="cta-text">
                   <h4>Find us</h4>
                   <span>1010 Avenue, sw 54321, chandigarh</span>
@@ -21,7 +21,7 @@ const Footer = () => {
             </div>
             <div className="col-xl-4 col-md-4 mb-30">
               <div className="single-cta">
-                <FiPhoneCall color="rgb(65 91 208)" size={40}  />
+                <FiPhoneCall color="rgb(65 91 208)" size={40} />
                 <div className="cta-text">
                   <h4>Call us</h4>
                   <span>9876543210 0</span>
@@ -30,7 +30,7 @@ const Footer = () => {
             </div>
             <div className="col-xl-4 col-md-4 mb-30">
               <div className="single-cta">
-                <AiTwotoneMail color="rgb(65 91 208)" size={40}  />
+                <AiTwotoneMail color="rgb(65 91 208)" size={40} />
                 <div className="cta-text">
                   <h4>Mail us</h4>
                   <span>mail@info.com</span>
@@ -45,18 +45,14 @@ const Footer = () => {
               <div className="footer-widget">
                 <div className="footer-logo">
                   <a href="index.html">
-                    <img
-                      src={Logo1}
-                      className="img-fluid"
-                      alt="logo"
-                    />
+                    <img src={Logo1} className="img-fluid" alt="logo" />
                   </a>
                 </div>
                 <div className="footer-text">
                   <p>
                     Lorem ipsum dolor sit amet, consec tetur adipisicing elit,
-                    sed do eiusmod tempor incididuntut consec tetur
-                    adipisicing elit,Lorem ipsum dolor sit amet.
+                    sed do eiusmod tempor incididuntut consec tetur adipisicing
+                    elit,Lorem ipsum dolor sit amet.
                   </p>
                 </div>
                 <div className="footer-social-icon">
@@ -147,7 +143,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

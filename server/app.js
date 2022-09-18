@@ -15,7 +15,6 @@ require('./db/connection');
 
 app.use(express.json());
 
-// const User = require('./moduls/userSchema');
 app.use(require('./router/auth'));
 app.use(require('./router/event'));
 app.use(require('./router/admin'));

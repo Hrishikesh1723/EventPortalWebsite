@@ -1,5 +1,5 @@
-import React,{useState} from "react";
-import { NavLink,useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import login from "../images/login.jpg";
 import loginImage from "../images/Mobile-login-Cristina-removebg-preview.png";
 import Navbar from "./Navbar";
@@ -10,32 +10,33 @@ import Footer from "./Footer";
 const Login = () => {
   let navigate = useNavigate();
 
-  const [email,setEmail] = useState('');
-  const [password,setPassword] = useState('');
+  //Defining user data.
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
+  //sending user input data to backend to serch user in database and responce accordingly.
   const loginUser = async (e) => {
     e.preventDefault();
 
-    const res = await fetch('/login',{
-      method:"POST",
-      headers:{
+    const res = await fetch("/login", {
+      method: "POST",
+      headers: {
         "Content-Type": "application/json",
       },
-      body:JSON.stringify({
+      body: JSON.stringify({
         email,
-        password
-      })
+        password,
+      }),
     });
 
     const data = res.json();
-    if(res.status === 400 || !data){
+    if (res.status === 400 || !data) {
       window.alert("Invalid credential");
-    }else{
+    } else {
       window.alert("Login Successful!");
       navigate("/about");
     }
-  }
-
+  };
 
   return (
     <>
@@ -50,14 +51,26 @@ const Login = () => {
             </div>
             <div className="login-page">Login Page</div>
             <form method="POST">
-            <div className="firstInput"> 
-              <MdOutlineMail size={25} />
-              <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" className="name" />
-            </div>
-            <div className="secondInput">
-              <BiLock size={25} />
-              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="name" />
-            </div>
+              <div className="firstInput">
+                <MdOutlineMail size={25} />
+                <input
+                  type="text"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email"
+                  className="name"
+                />
+              </div>
+              <div className="secondInput">
+                <BiLock size={25} />
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  className="name"
+                />
+              </div>
               <div className="padding1">
                 <input
                   type="submit"
@@ -73,11 +86,11 @@ const Login = () => {
             </div>
           </div>
         </div>
-          <div className="container-flaot2">
-            <img src={loginImage} alt="Login Image" className="Loginimg"/>
-          </div>
+        <div className="container-flaot2">
+          <img src={loginImage} alt="Login Image" className="Loginimg" />
+        </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

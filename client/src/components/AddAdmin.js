@@ -1,67 +1,69 @@
-import React,{useState,useEffect} from 'react'
-import Anavbar from './Anavbar'
+import React, { useState, useEffect } from "react";
+import Anavbar from "./Anavbar";
 import login from "../images/login.jpg";
 import Addadmin from "../images/Addadmin.png";
 import { BiLock } from "react-icons/bi";
 import { MdOutlineMail } from "react-icons/md";
 import { FiUser } from "react-icons/fi";
-import { useNavigate } from 'react-router-dom';
-import Footer from './Footer';
+import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 
 const AddAdmin = () => {
   let navigate = useNavigate();
   const [userData, setUserData] = useState();
 
-  const callProfilePage = async () => {
-    
+  // Getting data of current admin and authenticating the admin.
+  const adminData = async () => {
     try {
-      const res = await fetch('/adminhome',{
+      const res = await fetch("/adminhome", {
         method: "GET",
-        headers:{
-          Accept:"application/json",
+        headers: {
+          Accept: "application/json",
           "Content-Type": "application/json",
         },
-        credentials:"include"
-        
+        credentials: "include",
       });
 
       const data = await res.json();
       console.log(data);
       setUserData(data);
 
-      if(!res.status === 200){
+      if (!res.status === 200) {
         const error = new Error(res.error);
         throw error;
       }
     } catch (err) {
       console.log(err);
-      navigate('/admin')
+      navigate("/admin");
     }
-  }
+  };
 
-  useEffect(() =>{
-    callProfilePage();
-  }, [])
+  useEffect(() => {
+    adminData();
+  }, []);
 
-  const [user, setUser] = useState({
+  //Defining new admin data.
+  const [admin, setAdmin] = useState({
     name: "",
     email: "",
     password: "",
   });
 
+  //Handling the inputs and setting them to new admin data.
   let name, value;
   const handleInputs = (e) => {
     console.log(e);
     name = e.target.name;
     value = e.target.value;
 
-    setUser({ ...user, [name]: value });
+    setAdmin({ ...admin, [name]: value });
   };
 
+  //adding new admin data to database.
   const postData = async (e) => {
     e.preventDefault();
 
-    const { name, email, password } = user;
+    const { name, email, password } = admin;
 
     const res = await fetch("/addadmin", {
       method: "POST",
@@ -88,7 +90,7 @@ const AddAdmin = () => {
   };
   return (
     <>
-    <Anavbar/>
+      <Anavbar />
       <div className="containerBox">
         <div className="container-flaot">
           <div>
@@ -98,7 +100,7 @@ const AddAdmin = () => {
               </div>
             </div>
             <div className="login-page">Add Admin</div>
-            <form method='POST'>
+            <form method="POST">
               <div className="firstInput">
                 <FiUser size={25} />
                 <input
@@ -107,7 +109,7 @@ const AddAdmin = () => {
                   className="name"
                   name="name"
                   autocomplete="off"
-                  value={user.name}
+                  value={admin.name}
                   onChange={handleInputs}
                 />
               </div>
@@ -119,7 +121,7 @@ const AddAdmin = () => {
                   className="name"
                   name="email"
                   autocomplete="off"
-                  value={user.email}
+                  value={admin.email}
                   onChange={handleInputs}
                 />
               </div>
@@ -131,7 +133,7 @@ const AddAdmin = () => {
                   className="name"
                   name="password"
                   autocomplete="off"
-                  value={user.password}
+                  value={admin.password}
                   onChange={handleInputs}
                 />
               </div>
@@ -143,17 +145,17 @@ const AddAdmin = () => {
                   onClick={postData}
                   value="Add Admin"
                 />
-              </div> 
+              </div>
             </form>
           </div>
         </div>
-          <div className='container-flaot3'>
-            <img src={Addadmin} alt="Login Image" className="Loginimg"/>
-          </div>
+        <div className="container-flaot3">
+          <img src={Addadmin} alt="Login Image" className="Loginimg" />
+        </div>
       </div>
-      <Footer/>
-    </> 
-  )
-}
+      <Footer />
+    </>
+  );
+};
 
-export default AddAdmin
+export default AddAdmin;

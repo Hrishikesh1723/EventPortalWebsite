@@ -13,11 +13,11 @@ const Registereduser = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    console.log("rtfygk");
     console.log(params);
     getEventDetail();
   }, []);
 
+  //Getting event details by id.
   const getEventDetail = async () => {
     console.log(params);
     let resp = await fetch(`/event/${params.id}`);
@@ -35,7 +35,8 @@ const Registereduser = () => {
     });
   };
 
-  const callProfilePage = async () => {
+  // Getting data of current admin and authenticating the admin.
+  const callUserData = async () => {
     try {
       const res = await fetch("/adminhome", {
         method: "GET",
@@ -45,7 +46,6 @@ const Registereduser = () => {
         },
         credentials: "include",
       });
-
       const data = await res.json();
       console.log(data);
       setUserData(data);
@@ -61,9 +61,10 @@ const Registereduser = () => {
   };
 
   useEffect(() => {
-    callProfilePage();
+    callUserData();
   }, []);
 
+  //sendemail to all registered user.
   const sendEmail = async (e) => {
     e.preventDefault();
     const res = await fetch(`/sendEmail/${event.id}`, {
@@ -88,11 +89,13 @@ const Registereduser = () => {
     }
   };
   
+  //defind data for email
   const [content, setContent] = useState({
     subject: "",
     message: "",
   });
 
+  //setting data for email to send
   let name, value;
   const handleInputs = (e) => {
     console.log(e);
@@ -102,6 +105,7 @@ const Registereduser = () => {
     setContent({ ...content, [name]: value });
   };
 
+  //display registered user data  individually.
   const Record = (props) => (
     <div className="containerU">
     <div className='eventImgU'>
@@ -123,16 +127,20 @@ const Registereduser = () => {
     <div className="titleHead">
     Registered User
     </div>
+      {users && users.length? (
       <div>
         {users?.map((eve) => (
           <Record record={eve} key={eve._id} />
         ))}
       </div>
+      ):<div className="alternativeBlock">
+          No Rgistration for this event yet!
+        </div>}
       <div className="bg-color-g">
       <div className="message">
        <p>&#8594; Message to all registered Users: </p>
       </div>
-      <div className="sendEmailBox">
+      <div className="sendEmailBox">  
         <div className="sendEmailBox1">
           <div className="titleHead1">
             Email

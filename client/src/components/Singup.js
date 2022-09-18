@@ -8,10 +8,12 @@ import { MdOutlineMail } from "react-icons/md";
 import { FiUser } from "react-icons/fi";
 import { FaLock } from "react-icons/fa";
 import Footer from "./Footer";
+import PasswordChecklist from "react-password-checklist"
 
 const Singup = () => {
   let navigate = useNavigate();
 
+  //Defining new user data
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -19,6 +21,7 @@ const Singup = () => {
     cpassword: "",
   });
 
+  //Handling the inputs and setting them to new user data.
   let name, value;
   const handleInputs = (e) => {
     console.log(e);
@@ -28,6 +31,7 @@ const Singup = () => {
     setUser({ ...user, [name]: value });
   };
 
+  //adding new user data to database.
   const postData = async (e) => {
     e.preventDefault();
 
@@ -46,17 +50,19 @@ const Singup = () => {
       }),
     });
 
+    //send email for successful registration
     const resp = await fetch("/sendemail", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        toemail:email,
-        uname:name,
-        subject:"Registration successful!",
-        message:"You are successfully registered to our Eventive Event portal, Thanks for choosing us hope you Enjoy our service!",
-        name:"Eventive"
+        toemail: email,
+        uname: name,
+        subject: "Registration successful!",
+        message:
+          "You are successfully registered to our Eventive Event portal, Thanks for choosing us hope you Enjoy our service!",
+        name: "Eventive",
       }),
     });
 
@@ -75,6 +81,19 @@ const Singup = () => {
   return (
     <>
       <Navbar />
+      <div className="bg-org">
+      <div className="checklist">
+        <div>
+      <PasswordChecklist
+				rules={["minLength","specialChar","number","capital","match"]}
+				minLength={5}
+				value={user.password}
+				valueAgain={user.cpassword}
+				onChange={(isValid) => {}}
+			/>
+      </div>
+      </div>
+      </div>
       <div className="containerBox">
         <div className="container-flaot">
           <div>
@@ -148,11 +167,11 @@ const Singup = () => {
             </div>
           </div>
         </div>
-          <div className="container-flaot3">
-            <img src={Signup} alt="Login Image" className="Loginimg"/>
-          </div>
+        <div className="container-flaot3">
+          <img src={Signup} alt="Login Image" className="Loginimg" />
+        </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

@@ -27,6 +27,7 @@ router3.post("/addadmin", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+  return
 });
 
 // login
@@ -62,6 +63,7 @@ router3.post("/admin", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+  return
 });
 // Add Admin page
 router3.get(`/addadmin`, adminAuthenticate, (req, res) => {
@@ -88,8 +90,8 @@ router3.get(`/myuser`, adminAuthenticate, (req, res) => {
 // logout
 router3.get(`/logout`, (req, res) => {
   console.log("Admin logout");
-  res.clearCookie('jwtoken',{path:'/'});
-  res.status(200).send('Admin logout');
+  res.clearCookie("jwtoken", { path: "/" });
+  res.status(200).send("Admin logout");
 });
 
 module.exports = router3;
