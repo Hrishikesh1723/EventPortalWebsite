@@ -22,7 +22,7 @@ import Edit from "./components/Edit";
 import Registereduser from "./components/Registereduser";
 const App = () => {
   return (
-    <Routes>
+    <Routes> 
       <Route path="/" element={<Home/> } ></Route>
       <Route path="/about" element={<Profile/> } ></Route>
       <Route path="/login" element={<Login/> } ></Route>

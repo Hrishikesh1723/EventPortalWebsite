@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const express = require('express');
 const cookieParser = require('cookie-parser')
 const app = express();
-var cors = require('cors')
+var cors = require('cors')  
 
-app.use(cors())
+app.use(cors()) 
 
 app.use('/images',express.static('images'));
 
@@ -27,4 +27,4 @@ const PORT = process.env.PORT;
 
 app.listen(PORT, ()=>{
     console.log(`server is runging on port no. ${PORT}`)
-});
+}); 

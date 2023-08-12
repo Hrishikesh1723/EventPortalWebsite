@@ -278,12 +278,12 @@ input{
   align-items: center;
   justify-content: space-between;
   padding: 15px;
-  background-color:  rgb(31, 64, 211);
-  color: #00f18b;
+  background-color:  rgb(0, 0, 0);
+  color: #cccdcc;
   height: 62px;
  }
  .nav-links a {
-  color: #00f18b;
+  color: #cccdcc;
  }
  /* LOGO */
  .logo {

@@ -18,6 +18,7 @@ router.get(`/`, (req, res) => {
 
 // registration
 router.post("/register", async (req, res) => {
+  console.log(req)
   const { name, email, password, cpassword } = req.body;
 
   if (!name || !email || !password || !cpassword) {
@@ -38,7 +39,7 @@ router.post("/register", async (req, res) => {
         password,
         cpassword,
       });
-
+ 
       await user.save();
 
       res.status(201).json({ message: "Resgistration successfull!" });
